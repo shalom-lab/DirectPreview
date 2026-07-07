@@ -1,0 +1,456 @@
+{
+  "extName": {
+    "message": "DirectPreview - ブラウザで文書を即時プレビュー",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Office/PDF をダウンロードせずブラウザでプレビュー。IndexedDB で履歴を保存。",
+    "description": "Extension description"
+  },
+  "extShortName": {
+    "message": "DirectPreview",
+    "description": "Short extension name"
+  },
+  "preview_waitingCapture": {
+    "message": "キャプチャ待機中...",
+    "description": "Title when no active document"
+  },
+  "preview_importLocal": {
+    "message": "ローカルファイルをインポート",
+    "description": "Import button tooltip"
+  },
+  "preview_clearAll": {
+    "message": "すべて削除",
+    "description": "Clear history tooltip"
+  },
+  "preview_clearAllBtn": {
+    "message": "削除",
+    "description": "Clear history button label"
+  },
+  "preview_settings": {
+    "message": "設定",
+    "description": "Open settings page"
+  },
+  "preview_filterPlaceholder": {
+    "message": "ファイル名で絞り込み...",
+    "description": "Sidebar filter placeholder"
+  },
+  "preview_selectAll": {
+    "message": "すべて選択",
+    "description": "Select all checkbox"
+  },
+  "preview_batchDownload": {
+    "message": "一括ダウンロード",
+    "description": "Batch download button"
+  },
+  "preview_batchDownloading": {
+    "message": "ダウンロード中...",
+    "description": "Batch download in progress"
+  },
+  "preview_dragImport": {
+    "message": "ドラッグまたはクリックでインポート",
+    "description": "Empty list import hint"
+  },
+  "preview_formatsHint": {
+    "message": "xlsx · docx · doc · pdf",
+    "description": "Supported formats"
+  },
+  "preview_noHistory": {
+    "message": "履歴がありません",
+    "description": "No history"
+  },
+  "preview_noMatch": {
+    "message": "「$QUERY$」に一致するファイルはありません",
+    "description": "No filter results",
+    "placeholders": {
+      "query": {
+        "content": "$1",
+        "example": "report"
+      }
+    }
+  },
+  "preview_downloadDirect": {
+    "message": "ダウンロード",
+    "description": "List item download"
+  },
+  "preview_delete": {
+    "message": "削除",
+    "description": "Delete button"
+  },
+  "preview_rename": {
+    "message": "名前を変更",
+    "description": "Rename button"
+  },
+  "preview_doubleClickRename": {
+    "message": "ダブルクリックで名前変更",
+    "description": "Title double-click hint"
+  },
+  "preview_directDownload": {
+    "message": "ダウンロード",
+    "description": "Main toolbar download"
+  },
+  "preview_downloadFromUrl": {
+    "message": "元のURLからダウンロード",
+    "description": "Native URL download"
+  },
+  "preview_fetching": {
+    "message": "取得中。ファイルを安全に読み込んでいます...",
+    "description": "Fetching hint"
+  },
+  "preview_sandboxEmpty": {
+    "message": "サンドボックスに文書がありません",
+    "description": "Empty sandbox main"
+  },
+  "preview_sandboxEmptyHint": {
+    "message": "ウェブリンク横のプレビューボタンをクリックするか、ここにファイルをドラッグ",
+    "description": "Empty sandbox sub"
+  },
+  "preview_confirmDeleteTitle": {
+    "message": "削除の確認",
+    "description": "Delete dialog title"
+  },
+  "preview_confirmDeleteOne": {
+    "message": "「$NAME$」を削除しますか？元に戻せません。",
+    "description": "Single delete confirm",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "report.pdf"
+      }
+    }
+  },
+  "preview_confirmDeleteAll": {
+    "message": "全 $COUNT$ 件を削除しますか？元に戻せません。",
+    "description": "Clear all confirm",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "10"
+      }
+    }
+  },
+  "preview_cancel": {
+    "message": "キャンセル",
+    "description": "Cancel button"
+  },
+  "preview_confirmDeleteBtn": {
+    "message": "削除",
+    "description": "Confirm delete button"
+  },
+  "link_previewTitle": {
+    "message": "DirectPreview プレビュー（元のリンクは通常どおりダウンロード）",
+    "description": "Eye button tooltip"
+  },
+  "link_previewAria": {
+    "message": "DirectPreview プレビュー",
+    "description": "Eye button aria label"
+  },
+  "settings_title": {
+    "message": "設定",
+    "description": "Settings page title"
+  },
+  "settings_back": {
+    "message": "ダッシュボードに戻る",
+    "description": "Back button"
+  },
+  "settings_language": {
+    "message": "表示言語",
+    "description": "Language setting label"
+  },
+  "settings_language_auto": {
+    "message": "ブラウザに従う",
+    "description": "Auto language"
+  },
+  "settings_language_zh": {
+    "message": "简体中文",
+    "description": "Language name"
+  },
+  "settings_language_en": {
+    "message": "English",
+    "description": "Language name"
+  },
+  "settings_theme": {
+    "message": "背景テーマ",
+    "description": "Theme setting label"
+  },
+  "settings_theme_default": {
+    "message": "デフォルト",
+    "description": "Default theme"
+  },
+  "settings_theme_eye_green": {
+    "message": "目に優しいグリーン",
+    "description": "Green theme"
+  },
+  "settings_theme_eye_yellow": {
+    "message": "目に優しいイエロー",
+    "description": "Warm theme"
+  },
+  "settings_theme_eye_blue": {
+    "message": "目に優しいブルー",
+    "description": "Blue theme"
+  },
+  "settings_dotGrid": {
+    "message": "プレビュー領域のドット背景",
+    "description": "Dot grid toggle label"
+  },
+  "settings_dotGrid_hint": {
+    "message": "文書プレビュー背面にドット模様を表示",
+    "description": "Dot grid hint"
+  },
+  "excel_globalSearch": {
+    "message": "全体検索...",
+    "description": "Excel global search"
+  },
+  "excel_filter": {
+    "message": "フィルター...",
+    "description": "Excel column filter"
+  },
+  "excel_rowsShown": {
+    "message": "$VISIBLE$ / $TOTAL$ 行を表示",
+    "description": "Excel row count",
+    "placeholders": {
+      "visible": {
+        "content": "$1",
+        "example": "10"
+      },
+      "total": {
+        "content": "$2",
+        "example": "100"
+      }
+    }
+  },
+  "excel_clearFilters": {
+    "message": "フィルターをクリア",
+    "description": "Clear Excel filters"
+  },
+  "excel_noData": {
+    "message": "一致するデータがありません",
+    "description": "Excel no data"
+  },
+  "excel_parsing": {
+    "message": "Excel を解析中...",
+    "description": "Excel parsing"
+  },
+  "excel_sheet": {
+    "message": "シート: $NAME$",
+    "description": "Sheet name",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Sheet1"
+      }
+    }
+  },
+  "excel_invalid": {
+    "message": "有効な Excel ファイルではありません",
+    "description": "Invalid Excel"
+  },
+  "excel_noSheet": {
+    "message": "利用可能なシートがありません",
+    "description": "No sheets"
+  },
+  "excel_parseFailed": {
+    "message": "Excel の解析に失敗しました",
+    "description": "Excel parse failed"
+  },
+  "docx_parsing": {
+    "message": "Word 文書を解析中...",
+    "description": "Docx parsing"
+  },
+  "docx_invalid": {
+    "message": "有効な Word ファイルではありません",
+    "description": "Invalid Docx"
+  },
+  "docx_parseFailed": {
+    "message": "Word 文書の解析に失敗しました",
+    "description": "Docx parse failed"
+  },
+  "doc_parsing": {
+    "message": "Word (.doc) を解析中...",
+    "description": "Doc parsing"
+  },
+  "doc_empty": {
+    "message": "（本文がありません）",
+    "description": "Doc empty"
+  },
+  "doc_hint": {
+    "message": "旧 .doc 形式はテキストモードでプレビュー（レイアウトが異なる場合あり）",
+    "description": "Doc hint"
+  },
+  "doc_parseFailed": {
+    "message": "Word 文書の解析に失敗しました",
+    "description": "Doc parse failed"
+  },
+  "pdf_prev": {
+    "message": "前へ",
+    "description": "PDF previous page"
+  },
+  "pdf_next": {
+    "message": "次へ",
+    "description": "PDF next page"
+  },
+  "pdf_rendering": {
+    "message": "ページを描画中...",
+    "description": "PDF rendering"
+  },
+  "pdf_invalid": {
+    "message": "有効な PDF ファイルではありません",
+    "description": "Invalid PDF"
+  },
+  "pdf_parseFailed": {
+    "message": "PDF の解析に失敗しました",
+    "description": "PDF parse failed"
+  },
+  "word_detecting": {
+    "message": "Word 形式を識別中...",
+    "description": "Word detecting"
+  },
+  "error_initFailed": {
+    "message": "初期化に失敗しました",
+    "description": "Init error"
+  },
+  "error_fetchFailed": {
+    "message": "ファイルの取得に失敗しました",
+    "description": "Fetch error"
+  },
+  "error_unsupportedFormat": {
+    "message": "xlsx、docx、doc、pdf のみ対応",
+    "description": "Unsupported format"
+  },
+  "error_localReadFailed": {
+    "message": "ローカルファイルの読み込みに失敗しました",
+    "description": "Local read failed"
+  },
+  "error_invalidRenameExt": {
+    "message": "拡張子が無効です。xlsx、docx、doc、pdf を使用してください",
+    "description": "Invalid rename ext"
+  },
+  "error_renameFailed": {
+    "message": "名前の変更に失敗しました",
+    "description": "Rename failed"
+  },
+  "error_deleteFailed": {
+    "message": "削除に失敗しました",
+    "description": "Delete failed"
+  },
+  "error_downloadFailed": {
+    "message": "ダウンロードに失敗しました",
+    "description": "Download failed"
+  },
+  "error_batchDownloadFailed": {
+    "message": "一括ダウンロードに失敗しました",
+    "description": "Batch download failed"
+  },
+  "error_fileEmpty": {
+    "message": "ファイルが空です",
+    "description": "Empty file"
+  },
+  "error_urlInvalid": {
+    "message": "ダウンロード URL が無効です",
+    "description": "Invalid URL"
+  },
+  "error_urlTooLong": {
+    "message": "ダウンロード URL が長すぎます",
+    "description": "URL too long"
+  },
+  "error_urlFormatInvalid": {
+    "message": "URL の形式が無効です",
+    "description": "URL format invalid"
+  },
+  "error_urlSchemeInvalid": {
+    "message": "http / https のみ対応",
+    "description": "URL scheme invalid"
+  },
+  "error_downloadTimeout": {
+    "message": "ダウンロードがタイムアウトしました。再試行してください。",
+    "description": "Download timeout"
+  },
+  "error_networkFailed": {
+    "message": "ネットワークエラー。リンクと接続を確認してください。",
+    "description": "Network failed"
+  },
+  "error_httpStatus": {
+    "message": "ダウンロード失敗 (HTTP $STATUS$)",
+    "description": "HTTP error",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "404"
+      }
+    }
+  },
+  "error_htmlResponse": {
+    "message": "サーバーがファイルではなく Web ページを返しました。ログインが必要かもしれません。",
+    "description": "HTML response"
+  },
+  "error_formatUnknown": {
+    "message": "形式を認識できません。xlsx、docx、doc、pdf のみ対応。",
+    "description": "Unknown format"
+  },
+  "error_fileTypeMismatch": {
+    "message": "内容が $TYPE$ 形式と一致しません。破損または置換の可能性があります。",
+    "description": "Type mismatch",
+    "placeholders": {
+      "type": {
+        "content": "$1",
+        "example": "PDF"
+      }
+    }
+  },
+  "error_fileSizeExceeded": {
+    "message": "ファイルが $SIZE$MB の上限を超えています",
+    "description": "File too large",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "error_formatMismatchShort": {
+    "message": "内容が $TYPE$ 形式と一致しません",
+    "description": "Type mismatch short",
+    "placeholders": {
+      "type": {
+        "content": "$1",
+        "example": "DOCX"
+      }
+    }
+  },
+  "error_wordUnrecognized": {
+    "message": "Word 文書として認識できません",
+    "description": "Word unrecognized"
+  },
+  "settings_language_ja": {
+    "message": "日本語",
+    "description": "Language name"
+  },
+  "settings_language_es": {
+    "message": "Español",
+    "description": "Language name"
+  },
+  "settings_language_fr": {
+    "message": "Français",
+    "description": "Language name"
+  },
+  "settings_language_de": {
+    "message": "Deutsch",
+    "description": "Language name"
+  },
+  "settings_language_ko": {
+    "message": "한국어",
+    "description": "Language name"
+  },
+  "settings_language_pt_br": {
+    "message": "Português (Brasil)",
+    "description": "Language name"
+  },
+  "settings_language_ru": {
+    "message": "Русский",
+    "description": "Language name"
+  },
+  "settings_language_it": {
+    "message": "Italiano",
+    "description": "Language name"
+  }
+}

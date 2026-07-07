@@ -1,0 +1,456 @@
+{
+  "extName": {
+    "message": "DirectPreview - Visualização instantânea de documentos",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Visualize Office/PDF no navegador com histórico local no IndexedDB.",
+    "description": "Extension description"
+  },
+  "extShortName": {
+    "message": "DirectPreview",
+    "description": "Short extension name"
+  },
+  "preview_waitingCapture": {
+    "message": "Aguardando captura...",
+    "description": "Title when no active document"
+  },
+  "preview_importLocal": {
+    "message": "Importar arquivo local",
+    "description": "Import button tooltip"
+  },
+  "preview_clearAll": {
+    "message": "Limpar tudo",
+    "description": "Clear history tooltip"
+  },
+  "preview_clearAllBtn": {
+    "message": "Limpar",
+    "description": "Clear history button label"
+  },
+  "preview_settings": {
+    "message": "Configurações",
+    "description": "Open settings page"
+  },
+  "preview_filterPlaceholder": {
+    "message": "Filtrar por nome...",
+    "description": "Sidebar filter placeholder"
+  },
+  "preview_selectAll": {
+    "message": "Selecionar tudo",
+    "description": "Select all checkbox"
+  },
+  "preview_batchDownload": {
+    "message": "Download em lote",
+    "description": "Batch download button"
+  },
+  "preview_batchDownloading": {
+    "message": "Baixando...",
+    "description": "Batch download in progress"
+  },
+  "preview_dragImport": {
+    "message": "Arraste ou clique para importar",
+    "description": "Empty list import hint"
+  },
+  "preview_formatsHint": {
+    "message": "xlsx · docx · doc · pdf",
+    "description": "Supported formats"
+  },
+  "preview_noHistory": {
+    "message": "Sem histórico",
+    "description": "No history"
+  },
+  "preview_noMatch": {
+    "message": "Nenhum arquivo correspondente a \"$QUERY$\"",
+    "description": "No filter results",
+    "placeholders": {
+      "query": {
+        "content": "$1",
+        "example": "report"
+      }
+    }
+  },
+  "preview_downloadDirect": {
+    "message": "Baixar",
+    "description": "List item download"
+  },
+  "preview_delete": {
+    "message": "Excluir",
+    "description": "Delete button"
+  },
+  "preview_rename": {
+    "message": "Renomear",
+    "description": "Rename button"
+  },
+  "preview_doubleClickRename": {
+    "message": "Clique duplo para renomear",
+    "description": "Title double-click hint"
+  },
+  "preview_directDownload": {
+    "message": "Baixar",
+    "description": "Main toolbar download"
+  },
+  "preview_downloadFromUrl": {
+    "message": "Baixar da URL",
+    "description": "Native URL download"
+  },
+  "preview_fetching": {
+    "message": "Interceptado. Obtendo arquivo com segurança...",
+    "description": "Fetching hint"
+  },
+  "preview_sandboxEmpty": {
+    "message": "Nenhum documento ativo na área de teste",
+    "description": "Empty sandbox main"
+  },
+  "preview_sandboxEmptyHint": {
+    "message": "Clique no olho de visualização em um link ou arraste um arquivo aqui",
+    "description": "Empty sandbox sub"
+  },
+  "preview_confirmDeleteTitle": {
+    "message": "Confirmar exclusão",
+    "description": "Delete dialog title"
+  },
+  "preview_confirmDeleteOne": {
+    "message": "Excluir \"$NAME$\"? Não pode ser desfeito.",
+    "description": "Single delete confirm",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "report.pdf"
+      }
+    }
+  },
+  "preview_confirmDeleteAll": {
+    "message": "Limpar todos os $COUNT$ registros? Irreversível.",
+    "description": "Clear all confirm",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "10"
+      }
+    }
+  },
+  "preview_cancel": {
+    "message": "Cancelar",
+    "description": "Cancel button"
+  },
+  "preview_confirmDeleteBtn": {
+    "message": "Excluir",
+    "description": "Confirm delete button"
+  },
+  "link_previewTitle": {
+    "message": "Visualização DirectPreview (o link original ainda baixa normalmente)",
+    "description": "Eye button tooltip"
+  },
+  "link_previewAria": {
+    "message": "Visualização DirectPreview",
+    "description": "Eye button aria label"
+  },
+  "settings_title": {
+    "message": "Configurações",
+    "description": "Settings page title"
+  },
+  "settings_back": {
+    "message": "Voltar ao painel",
+    "description": "Back button"
+  },
+  "settings_language": {
+    "message": "Idioma",
+    "description": "Language setting label"
+  },
+  "settings_language_auto": {
+    "message": "Seguir o navegador",
+    "description": "Auto language"
+  },
+  "settings_language_zh": {
+    "message": "简体中文",
+    "description": "Language name"
+  },
+  "settings_language_en": {
+    "message": "English",
+    "description": "Language name"
+  },
+  "settings_theme": {
+    "message": "Tema de fundo",
+    "description": "Theme setting label"
+  },
+  "settings_theme_default": {
+    "message": "Padrão",
+    "description": "Default theme"
+  },
+  "settings_theme_eye_green": {
+    "message": "Verde suave",
+    "description": "Green theme"
+  },
+  "settings_theme_eye_yellow": {
+    "message": "Amarelo suave",
+    "description": "Warm theme"
+  },
+  "settings_theme_eye_blue": {
+    "message": "Azul suave",
+    "description": "Blue theme"
+  },
+  "settings_dotGrid": {
+    "message": "Fundo pontilhado na visualização",
+    "description": "Dot grid toggle label"
+  },
+  "settings_dotGrid_hint": {
+    "message": "Mostra um padrão de pontos atrás do documento",
+    "description": "Dot grid hint"
+  },
+  "excel_globalSearch": {
+    "message": "Pesquisar tudo...",
+    "description": "Excel global search"
+  },
+  "excel_filter": {
+    "message": "Filtrar...",
+    "description": "Excel column filter"
+  },
+  "excel_rowsShown": {
+    "message": "Exibindo $VISIBLE$ / $TOTAL$ linhas",
+    "description": "Excel row count",
+    "placeholders": {
+      "visible": {
+        "content": "$1",
+        "example": "10"
+      },
+      "total": {
+        "content": "$2",
+        "example": "100"
+      }
+    }
+  },
+  "excel_clearFilters": {
+    "message": "Limpar filtros",
+    "description": "Clear Excel filters"
+  },
+  "excel_noData": {
+    "message": "Nenhum dado correspondente",
+    "description": "Excel no data"
+  },
+  "excel_parsing": {
+    "message": "Analisando Excel...",
+    "description": "Excel parsing"
+  },
+  "excel_sheet": {
+    "message": "Planilha: $NAME$",
+    "description": "Sheet name",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Sheet1"
+      }
+    }
+  },
+  "excel_invalid": {
+    "message": "Não é um arquivo Excel válido",
+    "description": "Invalid Excel"
+  },
+  "excel_noSheet": {
+    "message": "Nenhuma planilha encontrada",
+    "description": "No sheets"
+  },
+  "excel_parseFailed": {
+    "message": "Falha ao analisar Excel",
+    "description": "Excel parse failed"
+  },
+  "docx_parsing": {
+    "message": "Analisando documento Word...",
+    "description": "Docx parsing"
+  },
+  "docx_invalid": {
+    "message": "Não é um arquivo Word válido",
+    "description": "Invalid Docx"
+  },
+  "docx_parseFailed": {
+    "message": "Falha ao analisar Word",
+    "description": "Docx parse failed"
+  },
+  "doc_parsing": {
+    "message": "Analisando Word (.doc)...",
+    "description": "Doc parsing"
+  },
+  "doc_empty": {
+    "message": "(Sem conteúdo)",
+    "description": "Doc empty"
+  },
+  "doc_hint": {
+    "message": "Visualização .doc antigo em modo texto (layout pode diferir)",
+    "description": "Doc hint"
+  },
+  "doc_parseFailed": {
+    "message": "Falha ao analisar Word",
+    "description": "Doc parse failed"
+  },
+  "pdf_prev": {
+    "message": "Anterior",
+    "description": "PDF previous page"
+  },
+  "pdf_next": {
+    "message": "Próximo",
+    "description": "PDF next page"
+  },
+  "pdf_rendering": {
+    "message": "Renderizando página...",
+    "description": "PDF rendering"
+  },
+  "pdf_invalid": {
+    "message": "Não é um arquivo PDF válido",
+    "description": "Invalid PDF"
+  },
+  "pdf_parseFailed": {
+    "message": "Falha ao analisar PDF",
+    "description": "PDF parse failed"
+  },
+  "word_detecting": {
+    "message": "Detectando formato Word...",
+    "description": "Word detecting"
+  },
+  "error_initFailed": {
+    "message": "Falha na inicialização",
+    "description": "Init error"
+  },
+  "error_fetchFailed": {
+    "message": "Falha ao obter arquivo",
+    "description": "Fetch error"
+  },
+  "error_unsupportedFormat": {
+    "message": "Apenas xlsx, docx, doc e pdf são suportados",
+    "description": "Unsupported format"
+  },
+  "error_localReadFailed": {
+    "message": "Falha ao ler arquivo local",
+    "description": "Local read failed"
+  },
+  "error_invalidRenameExt": {
+    "message": "Extensão inválida. Use xlsx, docx, doc ou pdf",
+    "description": "Invalid rename ext"
+  },
+  "error_renameFailed": {
+    "message": "Falha ao renomear",
+    "description": "Rename failed"
+  },
+  "error_deleteFailed": {
+    "message": "Falha ao excluir",
+    "description": "Delete failed"
+  },
+  "error_downloadFailed": {
+    "message": "Falha no download",
+    "description": "Download failed"
+  },
+  "error_batchDownloadFailed": {
+    "message": "Falha no download em lote",
+    "description": "Batch download failed"
+  },
+  "error_fileEmpty": {
+    "message": "Arquivo vazio",
+    "description": "Empty file"
+  },
+  "error_urlInvalid": {
+    "message": "URL de download inválida",
+    "description": "Invalid URL"
+  },
+  "error_urlTooLong": {
+    "message": "URL de download muito longa",
+    "description": "URL too long"
+  },
+  "error_urlFormatInvalid": {
+    "message": "Formato de URL inválido",
+    "description": "URL format invalid"
+  },
+  "error_urlSchemeInvalid": {
+    "message": "Apenas URLs http / https são suportadas",
+    "description": "URL scheme invalid"
+  },
+  "error_downloadTimeout": {
+    "message": "Tempo de download esgotado. Tente novamente.",
+    "description": "Download timeout"
+  },
+  "error_networkFailed": {
+    "message": "Falha de rede. Verifique o link e a conexão.",
+    "description": "Network failed"
+  },
+  "error_httpStatus": {
+    "message": "Download falhou (HTTP $STATUS$)",
+    "description": "HTTP error",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "404"
+      }
+    }
+  },
+  "error_htmlResponse": {
+    "message": "O servidor retornou uma página web em vez de um arquivo.",
+    "description": "HTML response"
+  },
+  "error_formatUnknown": {
+    "message": "Formato desconhecido. Apenas xlsx, docx, doc e pdf.",
+    "description": "Unknown format"
+  },
+  "error_fileTypeMismatch": {
+    "message": "O conteúdo não corresponde ao formato $TYPE$. Pode estar corrompido.",
+    "description": "Type mismatch",
+    "placeholders": {
+      "type": {
+        "content": "$1",
+        "example": "PDF"
+      }
+    }
+  },
+  "error_fileSizeExceeded": {
+    "message": "Arquivo excede o limite de $SIZE$MB",
+    "description": "File too large",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "error_formatMismatchShort": {
+    "message": "O conteúdo não corresponde ao formato $TYPE$",
+    "description": "Type mismatch short",
+    "placeholders": {
+      "type": {
+        "content": "$1",
+        "example": "DOCX"
+      }
+    }
+  },
+  "error_wordUnrecognized": {
+    "message": "Não reconhecido como documento Word",
+    "description": "Word unrecognized"
+  },
+  "settings_language_ja": {
+    "message": "日本語",
+    "description": "Language name"
+  },
+  "settings_language_es": {
+    "message": "Español",
+    "description": "Language name"
+  },
+  "settings_language_fr": {
+    "message": "Français",
+    "description": "Language name"
+  },
+  "settings_language_de": {
+    "message": "Deutsch",
+    "description": "Language name"
+  },
+  "settings_language_ko": {
+    "message": "한국어",
+    "description": "Language name"
+  },
+  "settings_language_pt_br": {
+    "message": "Português (Brasil)",
+    "description": "Language name"
+  },
+  "settings_language_ru": {
+    "message": "Русский",
+    "description": "Language name"
+  },
+  "settings_language_it": {
+    "message": "Italiano",
+    "description": "Language name"
+  }
+}

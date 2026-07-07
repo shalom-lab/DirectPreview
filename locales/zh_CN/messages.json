@@ -1,0 +1,456 @@
+{
+  "extName": {
+    "message": "DirectPreview - 网页文档免下载即时预览",
+    "description": "扩展名称"
+  },
+  "extDescription": {
+    "message": "拦截网页 Office/PDF 默认下载，提供免流即时预览与 IndexedDB 本地历史归档中心。",
+    "description": "扩展描述"
+  },
+  "extShortName": {
+    "message": "DirectPreview",
+    "description": "扩展简称"
+  },
+  "preview_waitingCapture": {
+    "message": "等待捕获...",
+    "description": "无活动文档时的标题"
+  },
+  "preview_importLocal": {
+    "message": "导入本地文件",
+    "description": "导入按钮提示"
+  },
+  "preview_clearAll": {
+    "message": "清空全部",
+    "description": "清空历史按钮提示"
+  },
+  "preview_clearAllBtn": {
+    "message": "清",
+    "description": "清空历史按钮文字"
+  },
+  "preview_settings": {
+    "message": "设置",
+    "description": "打开设置页"
+  },
+  "preview_filterPlaceholder": {
+    "message": "按文件名筛选...",
+    "description": "侧边栏筛选框占位符"
+  },
+  "preview_selectAll": {
+    "message": "全选",
+    "description": "全选复选框标签"
+  },
+  "preview_batchDownload": {
+    "message": "批量下载",
+    "description": "批量下载按钮"
+  },
+  "preview_batchDownloading": {
+    "message": "下载中...",
+    "description": "批量下载进行中"
+  },
+  "preview_dragImport": {
+    "message": "拖拽或点击导入",
+    "description": "空列表导入提示"
+  },
+  "preview_formatsHint": {
+    "message": "xlsx · docx · doc · pdf",
+    "description": "支持格式提示"
+  },
+  "preview_noHistory": {
+    "message": "暂无历史记录",
+    "description": "无历史记录"
+  },
+  "preview_noMatch": {
+    "message": "没有匹配「$QUERY$」的文件",
+    "description": "筛选无结果",
+    "placeholders": {
+      "query": {
+        "content": "$1",
+        "example": "报告"
+      }
+    }
+  },
+  "preview_downloadDirect": {
+    "message": "直接下载",
+    "description": "列表项下载按钮"
+  },
+  "preview_delete": {
+    "message": "删除",
+    "description": "删除按钮"
+  },
+  "preview_rename": {
+    "message": "重命名",
+    "description": "重命名按钮"
+  },
+  "preview_doubleClickRename": {
+    "message": "双击重命名",
+    "description": "标题双击提示"
+  },
+  "preview_directDownload": {
+    "message": "直接下载",
+    "description": "主工具栏下载"
+  },
+  "preview_downloadFromUrl": {
+    "message": "原网址下载",
+    "description": "原网址下载按钮"
+  },
+  "preview_fetching": {
+    "message": "沙盒拦截成功，正在安全提取原始流...",
+    "description": "抓取中提示"
+  },
+  "preview_sandboxEmpty": {
+    "message": "沙箱中暂无活动文档",
+    "description": "空沙箱主提示"
+  },
+  "preview_sandboxEmptyHint": {
+    "message": "点击网页链接旁的预览按钮，或拖拽/点击此处导入本地文件",
+    "description": "空沙箱副提示"
+  },
+  "preview_confirmDeleteTitle": {
+    "message": "确认删除",
+    "description": "删除确认对话框标题"
+  },
+  "preview_confirmDeleteOne": {
+    "message": "确定要删除文档「$NAME$」吗？删除后无法恢复。",
+    "description": "单条删除确认",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "报告.pdf"
+      }
+    }
+  },
+  "preview_confirmDeleteAll": {
+    "message": "确定要清空全部 $COUNT$ 条记录吗？此操作不可撤销。",
+    "description": "清空全部确认",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "10"
+      }
+    }
+  },
+  "preview_cancel": {
+    "message": "取消",
+    "description": "取消按钮"
+  },
+  "preview_confirmDeleteBtn": {
+    "message": "确认删除",
+    "description": "确认删除按钮"
+  },
+  "link_previewTitle": {
+    "message": "DirectPreview 预览（原链接仍为普通下载）",
+    "description": "眼睛按钮悬停提示"
+  },
+  "link_previewAria": {
+    "message": "DirectPreview 预览",
+    "description": "眼睛按钮无障碍标签"
+  },
+  "settings_title": {
+    "message": "设置",
+    "description": "设置页标题"
+  },
+  "settings_back": {
+    "message": "返回主控台",
+    "description": "返回按钮"
+  },
+  "settings_language": {
+    "message": "界面语言",
+    "description": "语言设置标签"
+  },
+  "settings_language_auto": {
+    "message": "跟随浏览器",
+    "description": "自动语言"
+  },
+  "settings_language_zh": {
+    "message": "简体中文",
+    "description": "中文选项"
+  },
+  "settings_language_en": {
+    "message": "English",
+    "description": "英文选项"
+  },
+  "settings_theme": {
+    "message": "背景主题",
+    "description": "主题设置标签"
+  },
+  "settings_theme_default": {
+    "message": "默认",
+    "description": "默认主题"
+  },
+  "settings_theme_eye_green": {
+    "message": "护眼绿",
+    "description": "护眼绿主题"
+  },
+  "settings_theme_eye_yellow": {
+    "message": "护眼黄",
+    "description": "护眼黄主题"
+  },
+  "settings_theme_eye_blue": {
+    "message": "护眼蓝",
+    "description": "护眼蓝主题"
+  },
+  "settings_dotGrid": {
+    "message": "文档区点阵背景",
+    "description": "点阵开关标签"
+  },
+  "settings_dotGrid_hint": {
+    "message": "在文档预览区域显示点格底纹，减轻视觉疲劳",
+    "description": "点阵开关说明"
+  },
+  "excel_globalSearch": {
+    "message": "全局搜索...",
+    "description": "Excel 全局搜索"
+  },
+  "excel_filter": {
+    "message": "筛选...",
+    "description": "Excel 列筛选"
+  },
+  "excel_rowsShown": {
+    "message": "显示 $VISIBLE$ / $TOTAL$ 行",
+    "description": "Excel 行数统计",
+    "placeholders": {
+      "visible": {
+        "content": "$1",
+        "example": "10"
+      },
+      "total": {
+        "content": "$2",
+        "example": "100"
+      }
+    }
+  },
+  "excel_clearFilters": {
+    "message": "清除筛选",
+    "description": "清除 Excel 筛选"
+  },
+  "excel_noData": {
+    "message": "无匹配数据",
+    "description": "Excel 无数据"
+  },
+  "excel_parsing": {
+    "message": "正在解析 Excel 文档...",
+    "description": "Excel 解析中"
+  },
+  "excel_sheet": {
+    "message": "工作表：$NAME$",
+    "description": "工作表名称",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Sheet1"
+      }
+    }
+  },
+  "excel_invalid": {
+    "message": "文件不是有效的 Excel 格式",
+    "description": "Excel 格式无效"
+  },
+  "excel_noSheet": {
+    "message": "工作簿中没有可用的工作表",
+    "description": "无工作表"
+  },
+  "excel_parseFailed": {
+    "message": "Excel 解析失败",
+    "description": "Excel 解析失败"
+  },
+  "docx_parsing": {
+    "message": "正在解析 Word 文档...",
+    "description": "Docx 解析中"
+  },
+  "docx_invalid": {
+    "message": "文件不是有效的 Word 格式",
+    "description": "Docx 格式无效"
+  },
+  "docx_parseFailed": {
+    "message": "Word 文档解析失败",
+    "description": "Docx 解析失败"
+  },
+  "doc_parsing": {
+    "message": "正在解析 Word (.doc) 文档...",
+    "description": "Doc 解析中"
+  },
+  "doc_empty": {
+    "message": "（文档无正文内容）",
+    "description": "Doc 空内容"
+  },
+  "doc_hint": {
+    "message": "旧版 .doc 格式以文本模式预览（排版可能与原文有差异）",
+    "description": "Doc 预览说明"
+  },
+  "doc_parseFailed": {
+    "message": "Word 文档解析失败",
+    "description": "Doc 解析失败"
+  },
+  "pdf_prev": {
+    "message": "上一页",
+    "description": "PDF 上一页"
+  },
+  "pdf_next": {
+    "message": "下一页",
+    "description": "PDF 下一页"
+  },
+  "pdf_rendering": {
+    "message": "正在渲染页面...",
+    "description": "PDF 渲染中"
+  },
+  "pdf_invalid": {
+    "message": "文件不是有效的 PDF 格式",
+    "description": "PDF 格式无效"
+  },
+  "pdf_parseFailed": {
+    "message": "PDF 解析失败",
+    "description": "PDF 解析失败"
+  },
+  "word_detecting": {
+    "message": "正在识别 Word 文档格式...",
+    "description": "Word 格式识别中"
+  },
+  "error_initFailed": {
+    "message": "初始化失败",
+    "description": "初始化错误"
+  },
+  "error_fetchFailed": {
+    "message": "抓取失败",
+    "description": "抓取错误"
+  },
+  "error_unsupportedFormat": {
+    "message": "仅支持 xlsx、docx、doc、pdf 格式",
+    "description": "不支持格式"
+  },
+  "error_localReadFailed": {
+    "message": "本地文件读取失败",
+    "description": "本地读取失败"
+  },
+  "error_invalidRenameExt": {
+    "message": "重命名后的扩展名无效，请保留 xlsx、docx、doc 或 pdf 后缀",
+    "description": "重命名扩展名无效"
+  },
+  "error_renameFailed": {
+    "message": "重命名失败",
+    "description": "重命名失败"
+  },
+  "error_deleteFailed": {
+    "message": "删除失败",
+    "description": "删除失败"
+  },
+  "error_downloadFailed": {
+    "message": "下载失败",
+    "description": "下载失败"
+  },
+  "error_batchDownloadFailed": {
+    "message": "批量下载失败",
+    "description": "批量下载失败"
+  },
+  "error_fileEmpty": {
+    "message": "文件内容为空",
+    "description": "空文件"
+  },
+  "error_urlInvalid": {
+    "message": "下载链接无效",
+    "description": "链接无效"
+  },
+  "error_urlTooLong": {
+    "message": "下载链接过长",
+    "description": "链接过长"
+  },
+  "error_urlFormatInvalid": {
+    "message": "下载链接格式无效",
+    "description": "链接格式无效"
+  },
+  "error_urlSchemeInvalid": {
+    "message": "仅支持 http / https 链接",
+    "description": "链接协议无效"
+  },
+  "error_downloadTimeout": {
+    "message": "下载超时，请稍后重试",
+    "description": "下载超时"
+  },
+  "error_networkFailed": {
+    "message": "网络请求失败，请检查链接或网络连接",
+    "description": "网络失败"
+  },
+  "error_httpStatus": {
+    "message": "下载失败 (HTTP $STATUS$)",
+    "description": "HTTP 错误",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "404"
+      }
+    }
+  },
+  "error_htmlResponse": {
+    "message": "服务器返回了网页而非文件，可能需要登录或链接已失效",
+    "description": "HTML 响应错误"
+  },
+  "error_formatUnknown": {
+    "message": "无法识别文件格式，仅支持 xlsx、docx、doc、pdf",
+    "description": "未知格式"
+  },
+  "error_fileTypeMismatch": {
+    "message": "文件内容与 $TYPE$ 格式不匹配，可能已损坏或被替换为其他内容",
+    "description": "格式不匹配",
+    "placeholders": {
+      "type": {
+        "content": "$1",
+        "example": "PDF"
+      }
+    }
+  },
+  "error_fileSizeExceeded": {
+    "message": "文件超过 $SIZE$MB 上限，无法处理",
+    "description": "文件过大",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "error_formatMismatchShort": {
+    "message": "文件内容与 $TYPE$ 格式不匹配",
+    "description": "格式不匹配简短",
+    "placeholders": {
+      "type": {
+        "content": "$1",
+        "example": "DOCX"
+      }
+    }
+  },
+  "error_wordUnrecognized": {
+    "message": "无法识别为 Word 文档，请确认文件未损坏",
+    "description": "Word 无法识别"
+  },
+  "settings_language_ja": {
+    "message": "日本語",
+    "description": "Japanese"
+  },
+  "settings_language_es": {
+    "message": "Español",
+    "description": "Spanish"
+  },
+  "settings_language_fr": {
+    "message": "Français",
+    "description": "French"
+  },
+  "settings_language_de": {
+    "message": "Deutsch",
+    "description": "German"
+  },
+  "settings_language_ko": {
+    "message": "한국어",
+    "description": "Korean"
+  },
+  "settings_language_pt_br": {
+    "message": "Português (Brasil)",
+    "description": "Portuguese"
+  },
+  "settings_language_ru": {
+    "message": "Русский",
+    "description": "Russian"
+  },
+  "settings_language_it": {
+    "message": "Italiano",
+    "description": "Italian"
+  }
+}

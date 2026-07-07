@@ -1,0 +1,456 @@
+{
+  "extName": {
+    "message": "DirectPreview - Instant Document Preview",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Preview Office/PDF documents in the browser with local history archive via IndexedDB.",
+    "description": "Extension description"
+  },
+  "extShortName": {
+    "message": "DirectPreview",
+    "description": "Short extension name"
+  },
+  "preview_waitingCapture": {
+    "message": "Waiting for capture...",
+    "description": "Title when no active document"
+  },
+  "preview_importLocal": {
+    "message": "Import local file",
+    "description": "Import button tooltip"
+  },
+  "preview_clearAll": {
+    "message": "Clear all",
+    "description": "Clear history tooltip"
+  },
+  "preview_clearAllBtn": {
+    "message": "Clear",
+    "description": "Clear history button label"
+  },
+  "preview_settings": {
+    "message": "Settings",
+    "description": "Open settings page"
+  },
+  "preview_filterPlaceholder": {
+    "message": "Filter by filename...",
+    "description": "Sidebar filter placeholder"
+  },
+  "preview_selectAll": {
+    "message": "Select all",
+    "description": "Select all checkbox"
+  },
+  "preview_batchDownload": {
+    "message": "Batch download",
+    "description": "Batch download button"
+  },
+  "preview_batchDownloading": {
+    "message": "Downloading...",
+    "description": "Batch download in progress"
+  },
+  "preview_dragImport": {
+    "message": "Drag or click to import",
+    "description": "Empty list import hint"
+  },
+  "preview_formatsHint": {
+    "message": "xlsx · docx · doc · pdf",
+    "description": "Supported formats"
+  },
+  "preview_noHistory": {
+    "message": "No history yet",
+    "description": "No history"
+  },
+  "preview_noMatch": {
+    "message": "No files matching \"$QUERY$\"",
+    "description": "No filter results",
+    "placeholders": {
+      "query": {
+        "content": "$1",
+        "example": "report"
+      }
+    }
+  },
+  "preview_downloadDirect": {
+    "message": "Download",
+    "description": "List item download"
+  },
+  "preview_delete": {
+    "message": "Delete",
+    "description": "Delete button"
+  },
+  "preview_rename": {
+    "message": "Rename",
+    "description": "Rename button"
+  },
+  "preview_doubleClickRename": {
+    "message": "Double-click to rename",
+    "description": "Title double-click hint"
+  },
+  "preview_directDownload": {
+    "message": "Download",
+    "description": "Main toolbar download"
+  },
+  "preview_downloadFromUrl": {
+    "message": "Download from URL",
+    "description": "Native URL download"
+  },
+  "preview_fetching": {
+    "message": "Intercepted. Fetching file securely...",
+    "description": "Fetching hint"
+  },
+  "preview_sandboxEmpty": {
+    "message": "No active document in sandbox",
+    "description": "Empty sandbox main"
+  },
+  "preview_sandboxEmptyHint": {
+    "message": "Click the preview eye on a web link, or drag/import a file here",
+    "description": "Empty sandbox sub"
+  },
+  "preview_confirmDeleteTitle": {
+    "message": "Confirm delete",
+    "description": "Delete dialog title"
+  },
+  "preview_confirmDeleteOne": {
+    "message": "Delete \"$NAME$\"? This cannot be undone.",
+    "description": "Single delete confirm",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "report.pdf"
+      }
+    }
+  },
+  "preview_confirmDeleteAll": {
+    "message": "Clear all $COUNT$ records? This cannot be undone.",
+    "description": "Clear all confirm",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "10"
+      }
+    }
+  },
+  "preview_cancel": {
+    "message": "Cancel",
+    "description": "Cancel button"
+  },
+  "preview_confirmDeleteBtn": {
+    "message": "Delete",
+    "description": "Confirm delete button"
+  },
+  "link_previewTitle": {
+    "message": "DirectPreview (original link still downloads normally)",
+    "description": "Eye button tooltip"
+  },
+  "link_previewAria": {
+    "message": "DirectPreview preview",
+    "description": "Eye button aria label"
+  },
+  "settings_title": {
+    "message": "Settings",
+    "description": "Settings page title"
+  },
+  "settings_back": {
+    "message": "Back to dashboard",
+    "description": "Back button"
+  },
+  "settings_language": {
+    "message": "Language",
+    "description": "Language setting label"
+  },
+  "settings_language_auto": {
+    "message": "Follow browser",
+    "description": "Auto language"
+  },
+  "settings_language_zh": {
+    "message": "简体中文",
+    "description": "Chinese option"
+  },
+  "settings_language_en": {
+    "message": "English",
+    "description": "English option"
+  },
+  "settings_theme": {
+    "message": "Background theme",
+    "description": "Theme setting label"
+  },
+  "settings_theme_default": {
+    "message": "Default",
+    "description": "Default theme"
+  },
+  "settings_theme_eye_green": {
+    "message": "Eye-care green",
+    "description": "Green theme"
+  },
+  "settings_theme_eye_yellow": {
+    "message": "Eye-care warm",
+    "description": "Warm theme"
+  },
+  "settings_theme_eye_blue": {
+    "message": "Eye-care blue",
+    "description": "Blue theme"
+  },
+  "settings_dotGrid": {
+    "message": "Dot grid in preview area",
+    "description": "Dot grid toggle label"
+  },
+  "settings_dotGrid_hint": {
+    "message": "Show a dot pattern behind the document preview",
+    "description": "Dot grid hint"
+  },
+  "excel_globalSearch": {
+    "message": "Search all...",
+    "description": "Excel global search"
+  },
+  "excel_filter": {
+    "message": "Filter...",
+    "description": "Excel column filter"
+  },
+  "excel_rowsShown": {
+    "message": "Showing $VISIBLE$ / $TOTAL$ rows",
+    "description": "Excel row count",
+    "placeholders": {
+      "visible": {
+        "content": "$1",
+        "example": "10"
+      },
+      "total": {
+        "content": "$2",
+        "example": "100"
+      }
+    }
+  },
+  "excel_clearFilters": {
+    "message": "Clear filters",
+    "description": "Clear Excel filters"
+  },
+  "excel_noData": {
+    "message": "No matching data",
+    "description": "Excel no data"
+  },
+  "excel_parsing": {
+    "message": "Parsing Excel...",
+    "description": "Excel parsing"
+  },
+  "excel_sheet": {
+    "message": "Sheet: $NAME$",
+    "description": "Sheet name",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Sheet1"
+      }
+    }
+  },
+  "excel_invalid": {
+    "message": "Not a valid Excel file",
+    "description": "Invalid Excel"
+  },
+  "excel_noSheet": {
+    "message": "No worksheets found",
+    "description": "No sheets"
+  },
+  "excel_parseFailed": {
+    "message": "Failed to parse Excel",
+    "description": "Excel parse failed"
+  },
+  "docx_parsing": {
+    "message": "Parsing Word document...",
+    "description": "Docx parsing"
+  },
+  "docx_invalid": {
+    "message": "Not a valid Word file",
+    "description": "Invalid Docx"
+  },
+  "docx_parseFailed": {
+    "message": "Failed to parse Word document",
+    "description": "Docx parse failed"
+  },
+  "doc_parsing": {
+    "message": "Parsing Word (.doc)...",
+    "description": "Doc parsing"
+  },
+  "doc_empty": {
+    "message": "(No body content)",
+    "description": "Doc empty"
+  },
+  "doc_hint": {
+    "message": "Legacy .doc preview in text mode (layout may differ)",
+    "description": "Doc hint"
+  },
+  "doc_parseFailed": {
+    "message": "Failed to parse Word document",
+    "description": "Doc parse failed"
+  },
+  "pdf_prev": {
+    "message": "Previous",
+    "description": "PDF previous page"
+  },
+  "pdf_next": {
+    "message": "Next",
+    "description": "PDF next page"
+  },
+  "pdf_rendering": {
+    "message": "Rendering page...",
+    "description": "PDF rendering"
+  },
+  "pdf_invalid": {
+    "message": "Not a valid PDF file",
+    "description": "Invalid PDF"
+  },
+  "pdf_parseFailed": {
+    "message": "Failed to parse PDF",
+    "description": "PDF parse failed"
+  },
+  "word_detecting": {
+    "message": "Detecting Word format...",
+    "description": "Word detecting"
+  },
+  "error_initFailed": {
+    "message": "Initialization failed",
+    "description": "Init error"
+  },
+  "error_fetchFailed": {
+    "message": "Failed to fetch file",
+    "description": "Fetch error"
+  },
+  "error_unsupportedFormat": {
+    "message": "Only xlsx, docx, doc, and pdf are supported",
+    "description": "Unsupported format"
+  },
+  "error_localReadFailed": {
+    "message": "Failed to read local file",
+    "description": "Local read failed"
+  },
+  "error_invalidRenameExt": {
+    "message": "Invalid extension. Use xlsx, docx, doc, or pdf",
+    "description": "Invalid rename ext"
+  },
+  "error_renameFailed": {
+    "message": "Rename failed",
+    "description": "Rename failed"
+  },
+  "error_deleteFailed": {
+    "message": "Delete failed",
+    "description": "Delete failed"
+  },
+  "error_downloadFailed": {
+    "message": "Download failed",
+    "description": "Download failed"
+  },
+  "error_batchDownloadFailed": {
+    "message": "Batch download failed",
+    "description": "Batch download failed"
+  },
+  "error_fileEmpty": {
+    "message": "File is empty",
+    "description": "Empty file"
+  },
+  "error_urlInvalid": {
+    "message": "Invalid download URL",
+    "description": "Invalid URL"
+  },
+  "error_urlTooLong": {
+    "message": "Download URL is too long",
+    "description": "URL too long"
+  },
+  "error_urlFormatInvalid": {
+    "message": "Invalid URL format",
+    "description": "URL format invalid"
+  },
+  "error_urlSchemeInvalid": {
+    "message": "Only http / https URLs are supported",
+    "description": "URL scheme invalid"
+  },
+  "error_downloadTimeout": {
+    "message": "Download timed out. Please retry.",
+    "description": "Download timeout"
+  },
+  "error_networkFailed": {
+    "message": "Network request failed. Check the link and connection.",
+    "description": "Network failed"
+  },
+  "error_httpStatus": {
+    "message": "Download failed (HTTP $STATUS$)",
+    "description": "HTTP error",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "404"
+      }
+    }
+  },
+  "error_htmlResponse": {
+    "message": "Server returned a web page instead of a file. Login may be required.",
+    "description": "HTML response"
+  },
+  "error_formatUnknown": {
+    "message": "Unknown format. Only xlsx, docx, doc, and pdf are supported.",
+    "description": "Unknown format"
+  },
+  "error_fileTypeMismatch": {
+    "message": "Content does not match $TYPE$ format. File may be corrupt or replaced.",
+    "description": "Type mismatch",
+    "placeholders": {
+      "type": {
+        "content": "$1",
+        "example": "PDF"
+      }
+    }
+  },
+  "error_fileSizeExceeded": {
+    "message": "File exceeds $SIZE$MB limit",
+    "description": "File too large",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "error_formatMismatchShort": {
+    "message": "Content does not match $TYPE$ format",
+    "description": "Type mismatch short",
+    "placeholders": {
+      "type": {
+        "content": "$1",
+        "example": "DOCX"
+      }
+    }
+  },
+  "error_wordUnrecognized": {
+    "message": "Not recognized as a Word document",
+    "description": "Word unrecognized"
+  },
+  "settings_language_ja": {
+    "message": "日本語",
+    "description": "Japanese"
+  },
+  "settings_language_es": {
+    "message": "Español",
+    "description": "Spanish"
+  },
+  "settings_language_fr": {
+    "message": "Français",
+    "description": "French"
+  },
+  "settings_language_de": {
+    "message": "Deutsch",
+    "description": "German"
+  },
+  "settings_language_ko": {
+    "message": "한국어",
+    "description": "Korean"
+  },
+  "settings_language_pt_br": {
+    "message": "Português (Brasil)",
+    "description": "Portuguese"
+  },
+  "settings_language_ru": {
+    "message": "Русский",
+    "description": "Russian"
+  },
+  "settings_language_it": {
+    "message": "Italiano",
+    "description": "Italian"
+  }
+}
