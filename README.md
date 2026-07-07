@@ -1,14 +1,24 @@
-<div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-  <img src="logo.svg" width="72" height="72" alt="DirectPreview" />
-  <div>
-    <h1 style="margin: 0; border: none; font-size: 2em;">DirectPreview</h1>
-    <p style="margin: 6px 0 0 0;">
-      网页 Office / PDF <strong>免下载即时预览</strong> · Chrome 扩展 · <a href="README.en.md">English</a>
-    </p>
-  </div>
-</div>
+<p align="left">
+  <img src="logo.svg" width="88" align="left" alt="DirectPreview" />
+</p>
 
-在下载链接旁点 **眼睛** 就能预览，原链接照常下载。文件自动归档到本地，随时回看、重命名、批量导出。
+# DirectPreview
+
+**网页 Office / PDF 免下载即时预览** · Chrome 扩展 · [English](README.en.md)
+
+<p>
+  <a href="https://github.com/shalom-lab/DirectPreview">
+    <img src="https://img.shields.io/github/stars/shalom-lab/DirectPreview?style=flat-square&logo=github&label=Star&color=2563EB" alt="GitHub Stars" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/shalom-lab/DirectPreview/releases">
+    <img src="https://img.shields.io/github/v/release/shalom-lab/DirectPreview?style=flat-square&label=Release&color=2563EB" alt="Release" />
+  </a>
+</p>
+
+<br clear="both" />
+
+> 👁 在下载链接旁点 **眼睛** 就能预览，原链接照常下载。文件自动归档到本地，随时回看、重命名、批量导出。
 
 ---
 
@@ -43,6 +53,8 @@
 
 ## 🛠 开发
 
+详见 [**DEVELOP.md**](DEVELOP.md)（版本号规则、发布流程、Release Workflow 说明）。
+
 ```bash
 npm install
 npm run dev      # 加载 build/chrome-mv3-dev
@@ -59,3 +71,11 @@ git push origin v1.0.0
 ```
 
 推送 `v*` 标签后，GitHub Actions 自动构建 Release，`manifest` 版本与 tag 同步。
+
+---
+
+<p align="center">
+  <a href="https://github.com/shalom-lab/DirectPreview">
+    <img src="https://img.shields.io/github/stars/shalom-lab/DirectPreview?style=for-the-badge&logo=github&label=Star%20DirectPreview&color=2563EB" alt="Star on GitHub" />
+  </a>
+</p>

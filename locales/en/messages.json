@@ -452,5 +452,17 @@
   "settings_language_it": {
     "message": "Italiano",
     "description": "Italian"
+  },
+  "settings_github_title": {
+    "message": "Open Source",
+    "description": "GitHub footer title"
+  },
+  "settings_github_hint": {
+    "message": "Enjoy DirectPreview? A GitHub star helps a lot",
+    "description": "GitHub footer hint"
+  },
+  "settings_star_cta": {
+    "message": "Star on GitHub",
+    "description": "GitHub star CTA"
   }
 }

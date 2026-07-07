@@ -452,5 +452,17 @@
   "settings_language_it": {
     "message": "Italiano",
     "description": "Italian"
+  },
+  "settings_github_title": {
+    "message": "开源支持",
+    "description": "GitHub footer title"
+  },
+  "settings_github_hint": {
+    "message": "喜欢 DirectPreview？欢迎 Star 支持持续更新",
+    "description": "GitHub footer hint"
+  },
+  "settings_star_cta": {
+    "message": "在 GitHub 上 Star",
+    "description": "GitHub star CTA"
   }
 }

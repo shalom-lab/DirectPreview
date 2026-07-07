@@ -9,6 +9,7 @@ import {
 import { LOCALE_OPTIONS } from "~utils/locales"
 import type { LocaleId } from "~utils/settings"
 import { THEMES } from "~utils/settings"
+import { GITHUB_REPO_URL, GITHUB_STARS_BADGE_URL } from "~utils/github"
 import "~style.css"
 
 const THEME_OPTIONS: ThemeId[] = [
@@ -38,7 +39,7 @@ function SettingsContent() {
 
   return (
     <div
-      className="dp-themed min-h-screen"
+      className="dp-themed min-h-screen flex flex-col"
       style={{ backgroundColor: "var(--dp-shell-bg)", color: "var(--dp-text)" }}>
       <header
         className="border-b px-6 py-4 flex items-center gap-4"
@@ -138,6 +139,40 @@ function SettingsContent() {
           </div>
         </section>
       </main>
+
+      <footer
+        className="max-w-2xl w-full mx-auto px-6 pb-8 pt-2 mt-auto"
+        style={{ borderColor: "var(--dp-border)" }}>
+        <div
+          className="rounded-xl border p-5 text-center"
+          style={{
+            backgroundColor: "var(--dp-sidebar-bg)",
+            borderColor: "var(--dp-border)"
+          }}>
+          <p className="text-sm font-medium mb-1">{t("settings_github_title")}</p>
+          <p className="text-xs dp-text-muted mb-4">{t("settings_github_hint")}</p>
+          <a
+            href={GITHUB_REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block transition-opacity hover:opacity-85">
+            <img
+              src={GITHUB_STARS_BADGE_URL}
+              alt={t("settings_star_cta")}
+              height={28}
+            />
+          </a>
+          <p className="text-xs dp-text-muted mt-3">
+            <a
+              href={GITHUB_REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline">
+              shalom-lab/DirectPreview
+            </a>
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
