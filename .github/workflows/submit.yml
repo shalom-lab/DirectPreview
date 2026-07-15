@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -94,6 +94,5 @@ jobs:
             --client-secret "$CLIENT_SECRET" \
             --refresh-token "$REFRESH_TOKEN" \
             --source "build/chrome-mv3-prod.zip"
-          # 首次上架前请在 Chrome 开发者后台补齐 Privacy / 图标 / 截图 / 描述 / Category。
-          # listing 齐全后再在 Dashboard 点 Publish，或把下面命令加回 CI：
-          # npx chrome-webstore-upload-cli@3 publish --extension-id ... --client-id ... --client-secret ... --refresh-token ...
+            # --auto-publish
+          # listing（Privacy / 图标 / 截图 / 描述 / Category）齐全后，去掉上一行注释即可自动发布
