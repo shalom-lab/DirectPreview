@@ -289,6 +289,14 @@
     "message": "다음",
     "description": "PDF next page"
   },
+  "pdf_mode_page": {
+    "message": "페이지",
+    "description": "PDF paged view mode"
+  },
+  "pdf_mode_scroll": {
+    "message": "연속 스크롤",
+    "description": "PDF continuous scroll mode"
+  },
   "pdf_rendering": {
     "message": "페이지 렌더링 중...",
     "description": "PDF rendering"

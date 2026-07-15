@@ -289,6 +289,14 @@
     "message": "Próximo",
     "description": "PDF next page"
   },
+  "pdf_mode_page": {
+    "message": "Páginas",
+    "description": "PDF paged view mode"
+  },
+  "pdf_mode_scroll": {
+    "message": "Contínuo",
+    "description": "PDF continuous scroll mode"
+  },
   "pdf_rendering": {
     "message": "Renderizando página...",
     "description": "PDF rendering"

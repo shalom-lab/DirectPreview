@@ -289,6 +289,14 @@
     "message": "下一页",
     "description": "PDF 下一页"
   },
+  "pdf_mode_page": {
+    "message": "分页",
+    "description": "PDF paged view mode"
+  },
+  "pdf_mode_scroll": {
+    "message": "连续滚动",
+    "description": "PDF continuous scroll mode"
+  },
   "pdf_rendering": {
     "message": "正在渲染页面...",
     "description": "PDF 渲染中"

@@ -289,6 +289,14 @@
     "message": "次へ",
     "description": "PDF next page"
   },
+  "pdf_mode_page": {
+    "message": "ページ",
+    "description": "PDF paged view mode"
+  },
+  "pdf_mode_scroll": {
+    "message": "連続スクロール",
+    "description": "PDF continuous scroll mode"
+  },
   "pdf_rendering": {
     "message": "ページを描画中...",
     "description": "PDF rendering"

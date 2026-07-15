@@ -289,6 +289,14 @@
     "message": "Вперёд",
     "description": "PDF next page"
   },
+  "pdf_mode_page": {
+    "message": "Страницы",
+    "description": "PDF paged view mode"
+  },
+  "pdf_mode_scroll": {
+    "message": "Лента",
+    "description": "PDF continuous scroll mode"
+  },
   "pdf_rendering": {
     "message": "Отрисовка страницы...",
     "description": "PDF rendering"
