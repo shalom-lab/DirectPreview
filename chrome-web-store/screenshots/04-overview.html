@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>04 — Overview · DirectPreview</title>
+  <link rel="stylesheet" href="assets/common.css" />
+  <style>
+    .glow-a { width: 280px; height: 280px; background: rgba(37,99,235,0.2); top: -20px; left: 38%; }
+    .glow-b { width: 200px; height: 200px; background: rgba(56,189,248,0.14); bottom: 0; right: 18%; }
+  </style>
+</head>
+<body>
+  <div id="capture">
+    <div class="frame-inner bg-mesh-light">
+      <div class="grid-dots"></div>
+      <div class="glow-orb glow-a"></div>
+      <div class="glow-orb glow-b"></div>
+      <div class="bento-wrap">
+        <div class="bento-hero">
+          <div class="bento-logo"><img data-store-icon alt="" /></div>
+          <h1>DirectPreview</h1>
+          <p>Preview Office &amp; PDF without downloading · Local archive · Eye-care themes · 10 languages</p>
+        </div>
+        <div class="bento-grid">
+          <div class="bento-card">
+            <div class="ico">👁</div>
+            <h3>Eye preview</h3>
+            <p>Injects an eye beside document links. Original download stays intact.</p>
+          </div>
+          <div class="bento-card">
+            <div class="ico">🗂</div>
+            <h3>Local archive</h3>
+            <p>IndexedDB history — search, rename, delete, batch download.</p>
+          </div>
+          <div class="bento-card">
+            <div class="ico">🎨</div>
+            <h3>Eye-care themes</h3>
+            <p>Default, green, warm yellow, soft blue — plus a dotted canvas.</p>
+          </div>
+          <div class="bento-card">
+            <div class="ico">🌍</div>
+            <h3>10 languages</h3>
+            <p>Chinese, English, Japanese, Spanish, French, German, Korean, Portuguese, Russian, Italian.</p>
+          </div>
+        </div>
+        <div class="flow-bar">
+          <span>Find a doc link</span>
+          <span class="arr">→</span>
+          <span>Click the eye</span>
+          <span class="arr">→</span>
+          <span>Preview</span>
+          <span class="arr">→</span>
+          <span>Archived locally</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="../assets/icon-data.js"></script>
+  <script src="../assets/export.js"></script>
+  <script>
+    buildToolbar("04 · Overview", "03-formats.html", "../index.html", "04-overview-1280x800.png", 1280, 800, "Screenshots / 屏幕截图");
+  </script>
+</body>
+</html>

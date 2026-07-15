@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>03 — Formats · DirectPreview</title>
+  <link rel="stylesheet" href="assets/common.css" />
+  <style>
+    .glow-a { width: 220px; height: 220px; background: rgba(37,99,235,0.2); top: 10px; right: 20%; }
+    .glow-b { width: 160px; height: 160px; background: rgba(56,189,248,0.15); bottom: 30px; left: 15%; }
+    .feat-stack { flex: 1.2; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+    .feat-card {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+      padding: 14px 16px; box-shadow: 0 8px 24px rgba(15,23,42,0.06);
+    }
+    .feat-card h3 { font-size: 14px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .feat-card p { font-size: 12px; color: #64748b; line-height: 1.5; }
+    .toolbar-mock {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;
+      font-size: 11px; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0;
+      border-radius: 8px; padding: 6px 10px;
+    }
+    .toolbar-mock .seg {
+      display: inline-flex; border-radius: 6px; overflow: hidden; border: 1px solid #bfdbfe;
+    }
+    .toolbar-mock .seg span {
+      padding: 3px 8px; font-weight: 600;
+    }
+    .toolbar-mock .seg .on { background: #2563EB; color: #fff; }
+    .toolbar-mock .seg .off { background: #eff6ff; color: #1e40af; }
+  </style>
+</head>
+<body>
+  <div id="capture">
+    <div class="frame-inner bg-mesh-light">
+      <div class="grid-dots"></div>
+      <div class="glow-orb glow-a"></div>
+      <div class="glow-orb glow-b"></div>
+      <div class="brand-mark">
+        <div class="brand-icon"><img data-store-icon alt="" /></div>
+        <div class="brand-text">DirectPreview<span>Multi-format</span></div>
+      </div>
+      <div class="scene">
+        <div class="feat-stack">
+          <div class="feat-card">
+            <h3>📊 Excel</h3>
+            <p>Search, column filters, sort. Header labels stay A / B / C… for a spreadsheet feel.</p>
+          </div>
+          <div class="feat-card">
+            <h3>📄 PDF</h3>
+            <p>Flip page by page, or switch to continuous scroll for long docs.</p>
+            <div class="toolbar-mock">
+              <span>Previous</span>
+              <span>2 / 12</span>
+              <span>Next</span>
+              <span class="seg"><span class="on">Pages</span><span class="off">Continuous</span></span>
+            </div>
+          </div>
+          <div class="feat-card">
+            <h3>📝 Word (.docx / .doc)</h3>
+            <p>Continuous reading layout. Auto-detects legacy .doc vs modern .docx.</p>
+          </div>
+        </div>
+        <div class="hero-copy">
+          <h1 class="gradient">One viewer.<br />Four formats.</h1>
+          <p>xlsx · docx · doc · pdf — preview in the dashboard or after an eye-click capture.</p>
+          <div class="chip-row">
+            <span class="chip">Excel tools</span>
+            <span class="chip">PDF scroll</span>
+            <span class="chip">Word autodetect</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="../assets/icon-data.js"></script>
+  <script src="../assets/export.js"></script>
+  <script>
+    buildToolbar("03 · Formats", "02-dashboard.html", "04-overview.html", "03-formats-1280x800.png", 1280, 800, "Screenshots / 屏幕截图");
+  </script>
+</body>
+</html>

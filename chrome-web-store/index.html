@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>DirectPreview — Chrome Web Store Assets</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(37,99,235,0.08), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 90% 100%, rgba(56,189,248,0.06), transparent 50%),
+        #f8fafc;
+      color: #0f172a;
+      max-width: 960px; margin: 0 auto; padding: 40px 24px 64px;
+    }
+    h1 { font-size: 28px; margin-bottom: 8px; color: #1e293b; }
+    .lead { color: #64748b; margin-bottom: 24px; line-height: 1.6; font-size: 14px; }
+    .lead a { color: #2563EB; }
+    .notice {
+      background: #eff6ff; border: 1px solid #bfdbfe;
+      border-radius: 10px; padding: 14px 16px; font-size: 13px; line-height: 1.55;
+      color: #1e40af; margin-bottom: 28px;
+    }
+    h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin: 28px 0 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 8px; background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #f1f5f9; }
+    th { color: #64748b; font-weight: 600; background: #f8fafc; }
+    td a { color: #2563EB; text-decoration: none; font-weight: 600; }
+    td a:hover { text-decoration: underline; }
+    .size { font-variant-numeric: tabular-nums; color: #334155; white-space: nowrap; font-weight: 500; }
+    .dim { color: #94a3b8; font-size: 12px; }
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card {
+      display: block; background: #fff; border: 1px solid #e2e8f0;
+      border-radius: 12px; padding: 16px; text-decoration: none; color: inherit;
+      box-shadow: 0 1px 3px rgba(15,23,42,0.04);
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+    .card:hover { border-color: #bfdbfe; box-shadow: 0 4px 12px rgba(37,99,235,0.1); }
+    .card .badge {
+      display: inline-block; font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #2563EB; background: #eff6ff;
+      padding: 3px 8px; border-radius: 6px; margin-bottom: 8px;
+    }
+    .card h3 { font-size: 15px; margin-bottom: 4px; color: #1e293b; }
+    .card p { font-size: 12px; color: #64748b; }
+    .card .go { margin-top: 10px; font-size: 11px; font-weight: 600; color: #2563EB; }
+    .copy-box {
+      background: #fff; border: 1px solid #e2e8f0;
+      border-radius: 10px; padding: 16px; font-size: 13px; line-height: 1.6;
+      color: #475569;
+    }
+    .copy-box strong { color: #1e293b; }
+  </style>
+</head>
+<body>
+  <h1>Chrome Web Store assets</h1>
+  <p class="lead">Open this folder in Chrome. Click each page → <strong>⬇ Download PNG</strong>. Text → <a href="copy-paste/en-US.md">copy-paste/en-US.md</a></p>
+
+  <div class="notice">
+    Double-click <strong>index.html</strong> (this file) or any page below. No server needed.<br />
+    Sizes: icon <strong>128×128</strong>, screenshots <strong>1280×800</strong>, small promo <strong>440×280</strong>, marquee <strong>1400×560</strong>.
+  </div>
+
+  <h2>Text (paste in dashboard)</h2>
+  <div class="copy-box">
+    <p><strong>Title:</strong> DirectPreview</p>
+    <p><strong>Summary:</strong> Preview Office &amp; PDF links instantly—click the eye beside downloads. Local archive, Excel tools, eye-care themes.</p>
+    <p><strong>Category:</strong> Productivity &nbsp;·&nbsp; <strong>Language:</strong> English</p>
+  </div>
+
+  <h2>All image slots</h2>
+  <table>
+    <tr><th>Dashboard slot</th><th>Size</th><th>File</th></tr>
+    <tr>
+      <td>Store icon</td>
+      <td class="size">128 × 128</td>
+      <td><a href="icons/icon128.png">icons/icon128.png</a></td>
+    </tr>
+    <tr>
+      <td>Screenshots (1–5)</td>
+      <td class="size">1280 × 800</td>
+      <td>pages below</td>
+    </tr>
+    <tr>
+      <td>Small promo tile</td>
+      <td class="size">440 × 280</td>
+      <td><a href="promo/small-tile.html">promo/small-tile.html</a></td>
+    </tr>
+    <tr>
+      <td>Marquee promo tile</td>
+      <td class="size">1400 × 560</td>
+      <td><a href="promo/marquee-tile.html">promo/marquee-tile.html</a></td>
+    </tr>
+  </table>
+
+  <h2>Screenshots — 1280 × 800</h2>
+  <div class="cards">
+    <a class="card" href="screenshots/01-eye-preview.html">
+      <span class="badge">1280×800 · upload first</span>
+      <h3>01 · Eye preview</h3>
+      <p>Flagship: eye button beside document links</p>
+      <div class="go">Open page → Download PNG →</div>
+    </a>
+    <a class="card" href="screenshots/02-dashboard.html">
+      <span class="badge">1280×800</span>
+      <h3>02 · Dashboard</h3>
+      <p>Local history archive + Excel preview</p>
+      <div class="go">Open page → Download PNG →</div>
+    </a>
+    <a class="card" href="screenshots/03-formats.html">
+      <span class="badge">1280×800</span>
+      <h3>03 · Formats</h3>
+      <p>Excel / PDF continuous / Word</p>
+      <div class="go">Open page → Download PNG →</div>
+    </a>
+    <a class="card" href="screenshots/04-overview.html">
+      <span class="badge">1280×800</span>
+      <h3>04 · Overview</h3>
+      <p>Themes, languages, workflow</p>
+      <div class="go">Open page → Download PNG →</div>
+    </a>
+  </div>
+
+  <h2>Promo tiles</h2>
+  <div class="cards">
+    <a class="card" href="promo/small-tile.html">
+      <span class="badge">440×280</span>
+      <h3>Small promo tile</h3>
+      <p>Separate upload slot</p>
+      <div class="go">Open page → Download PNG →</div>
+    </a>
+    <a class="card" href="promo/marquee-tile.html">
+      <span class="badge">1400×560</span>
+      <h3>Marquee promo tile</h3>
+      <p>Separate upload slot</p>
+      <div class="go">Open page → Download PNG →</div>
+    </a>
+  </div>
+  <p class="dim" style="margin-top:16px">Each export page needs internet once (html2canvas CDN).</p>
+</body>
+</html>

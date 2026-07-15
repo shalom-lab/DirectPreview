@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>01 — Eye preview · DirectPreview</title>
+  <link rel="stylesheet" href="assets/common.css" />
+  <style>
+    .glow-a { width: 260px; height: 260px; background: rgba(37,99,235,0.22); top: 0; right: 80px; }
+    .glow-b { width: 180px; height: 180px; background: rgba(56,189,248,0.16); bottom: 40px; left: 160px; }
+    .demo-col { flex: 1.1; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+    .link-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 14px; background: #fff; border: 1px solid #e2e8f0;
+      border-radius: 12px; font-size: 13px; color: #334155;
+    }
+    .link-row a { color: #2563EB; font-weight: 600; text-decoration: none; }
+    .eye-btn {
+      width: 32px; height: 32px; border-radius: 8px; border: 1px solid #bfdbfe;
+      background: #eff6ff; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: #2563EB; font-size: 16px;
+    }
+    .eye-hint {
+      font-size: 11px; font-weight: 600; color: #2563EB; background: #dbeafe;
+      padding: 4px 8px; border-radius: 6px; flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="capture">
+    <div class="frame-inner bg-mesh-light">
+      <div class="grid-dots"></div>
+      <div class="glow-orb glow-a"></div>
+      <div class="glow-orb glow-b"></div>
+      <div class="brand-mark">
+        <div class="brand-icon"><img data-store-icon alt="" /></div>
+        <div class="brand-text">DirectPreview<span>Preview without download</span></div>
+      </div>
+      <div class="scene">
+        <div class="demo-col">
+          <div class="browser">
+            <div class="browser-bar">
+              <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+              <div class="url-bar">https://intranet.example.com/files</div>
+            </div>
+            <div class="browser-body">
+              <h2>Project files</h2>
+              <p style="margin-bottom:14px;color:#64748b;font-size:13px">Click the eye to preview — the original download link still works.</p>
+              <div class="link-row">
+                <a href="#">Q3-budget.xlsx</a>
+                <span class="eye-btn" title="Preview">👁</span>
+                <span class="eye-hint">Preview</span>
+              </div>
+              <div class="link-row" style="margin-top:8px">
+                <a href="#">spec-v2.pdf</a>
+                <span class="eye-btn">👁</span>
+              </div>
+              <div class="link-row" style="margin-top:8px">
+                <a href="#">meeting-notes.docx</a>
+                <span class="eye-btn">👁</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-copy">
+          <h1 class="gradient">Click the eye.<br />Preview instantly.</h1>
+          <p>Office &amp; PDF links get a side-by-side eye button. Original downloads stay untouched.</p>
+          <div class="chip-row">
+            <span class="chip">xlsx</span>
+            <span class="chip">docx / doc</span>
+            <span class="chip">pdf</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="../assets/icon-data.js"></script>
+  <script src="../assets/export.js"></script>
+  <script>
+    buildToolbar("01 · Eye preview", null, "02-dashboard.html", "01-eye-preview-1280x800.png", 1280, 800, "Screenshots / 屏幕截图");
+  </script>
+</body>
+</html>

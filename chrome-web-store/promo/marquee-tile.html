@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Marquee promo · DirectPreview</title>
+  <link rel="stylesheet" href="../screenshots/assets/common.css" />
+  <link rel="stylesheet" href="assets/promo.css" />
+</head>
+<body class="size-lg">
+  <div id="capture" data-export-bg="#0f2744">
+    <div class="frame-inner bg-promo">
+      <div class="promo-content">
+        <div class="promo-left">
+          <div class="promo-logo-row">
+            <div class="promo-logo"><img data-store-icon alt="" /></div>
+            <span>DirectPreview</span>
+          </div>
+          <h1>Preview without<br />download</h1>
+          <p class="tagline">Eye button next to Office &amp; PDF links. Local archive, Excel tools, eye-care themes, 10 languages.</p>
+        </div>
+        <div class="promo-right">
+          <div class="promo-mock">
+            <h3>Document link</h3>
+            <div class="mock-field">Q3-budget.xlsx</div>
+            <div class="mock-field hl">👁 Preview · original download intact</div>
+            <button type="button" class="mock-btn">Open in DirectPreview</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="../assets/icon-data.js"></script>
+  <script src="../assets/export.js"></script>
+  <script>
+    buildToolbar("Marquee promo", "small-tile.html", "../index.html", "promo-marquee-1400x560.png", 1400, 560, "Marquee promo tile / 顶部宣传图块");
+  </script>
+</body>
+</html>

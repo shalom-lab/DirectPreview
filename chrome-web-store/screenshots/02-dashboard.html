@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>02 — Dashboard · DirectPreview</title>
+  <link rel="stylesheet" href="assets/common.css" />
+  <style>
+    .glow-a { width: 240px; height: 240px; background: rgba(37,99,235,0.18); top: -10px; left: 40%; }
+    .glow-b { width: 200px; height: 200px; background: rgba(56,189,248,0.14); bottom: 20px; right: 10%; }
+    .dash {
+      flex: 1.35; display: flex; min-height: 0; border-radius: 16px; overflow: hidden;
+      border: 1px solid #e2e8f0; background: #fff; box-shadow: 0 16px 40px rgba(15,23,42,0.08);
+    }
+    .dash-side {
+      width: 200px; background: #f8fafc; border-right: 1px solid #e2e8f0;
+      padding: 14px 12px; font-size: 12px; color: #475569;
+    }
+    .dash-side .logo-row {
+      display: flex; align-items: center; gap: 8px; font-weight: 700; color: #0f172a;
+      margin-bottom: 14px; font-size: 13px;
+    }
+    .dash-side .dp {
+      background: #2563EB; color: #fff; font-size: 10px; font-family: ui-monospace, monospace;
+      padding: 2px 5px; border-radius: 4px;
+    }
+    .hist-item {
+      padding: 8px 10px; border-radius: 8px; margin-bottom: 4px; cursor: default;
+    }
+    .hist-item.active { background: #dbeafe; color: #1e40af; font-weight: 600; }
+    .hist-item .meta { font-size: 10px; color: #94a3b8; font-weight: 500; margin-top: 2px; }
+    .dash-main { flex: 1; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .dash-main h3 { font-size: 14px; font-weight: 700; }
+    .sheet {
+      flex: 1; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; font-size: 11px;
+    }
+    .sheet table { width: 100%; border-collapse: collapse; }
+    .sheet th { background: #f1f5f9; padding: 6px 8px; text-align: left; color: #64748b; font-weight: 600; }
+    .sheet td { padding: 6px 8px; border-top: 1px solid #f1f5f9; color: #334155; }
+  </style>
+</head>
+<body>
+  <div id="capture">
+    <div class="frame-inner bg-mesh-light">
+      <div class="grid-dots"></div>
+      <div class="glow-orb glow-a"></div>
+      <div class="glow-orb glow-b"></div>
+      <div class="brand-mark">
+        <div class="brand-icon"><img data-store-icon alt="" /></div>
+        <div class="brand-text">DirectPreview<span>Local archive</span></div>
+      </div>
+      <div class="scene">
+        <div class="dash">
+          <aside class="dash-side">
+            <div class="logo-row"><span class="dp">DP</span> History</div>
+            <div class="hist-item active">
+              Q3-budget.xlsx
+              <div class="meta">xlsx · today</div>
+            </div>
+            <div class="hist-item">
+              spec-v2.pdf
+              <div class="meta">pdf · yesterday</div>
+            </div>
+            <div class="hist-item">
+              meeting-notes.docx
+              <div class="meta">docx · Mon</div>
+            </div>
+          </aside>
+          <div class="dash-main">
+            <h3>Q3-budget.xlsx</h3>
+            <div class="sheet">
+              <table>
+                <thead>
+                  <tr><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Dept</td><td>Budget</td><td>Actual</td><td>Delta</td></tr>
+                  <tr><td>Design</td><td>42k</td><td>39k</td><td>-3k</td></tr>
+                  <tr><td>Eng</td><td>180k</td><td>176k</td><td>-4k</td></tr>
+                  <tr><td>Ops</td><td>55k</td><td>58k</td><td>+3k</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="hero-copy">
+          <h1 class="gradient">History stays<br />on your device.</h1>
+          <p>IndexedDB archive (up to 200). Search, rename, delete, or batch download anytime.</p>
+          <div class="chip-row">
+            <span class="chip">Local only</span>
+            <span class="chip">Batch export</span>
+            <span class="chip">Rename</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="../assets/icon-data.js"></script>
+  <script src="../assets/export.js"></script>
+  <script>
+    buildToolbar("02 · Dashboard", "01-eye-preview.html", "03-formats.html", "02-dashboard-1280x800.png", 1280, 800, "Screenshots / 屏幕截图");
+  </script>
+</body>
+</html>
