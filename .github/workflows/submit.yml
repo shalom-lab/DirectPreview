@@ -76,6 +76,22 @@ jobs:
           console.log('manifest.version OK:', manifest.version);
           "
 
+      - name: Verify store package icons
+        run: |
+          node --input-type=module -e "
+          import fs from 'node:fs';
+          import { PNG } from 'pngjs';
+          const m = JSON.parse(fs.readFileSync('build/chrome-mv3-prod/manifest.json','utf8'));
+          for (const [size, rel] of Object.entries(m.icons || {})) {
+            const png = PNG.sync.read(fs.readFileSync('build/chrome-mv3-prod/' + rel));
+            if (png.colorType !== 6) {
+              console.error('icon', size, 'colorType', png.colorType, 'expected RGBA(6)');
+              process.exit(1);
+            }
+            console.log('icon', size, 'RGBA OK', png.width + 'x' + png.height);
+          }
+          "
+
       - name: Upload to Chrome Web Store
         env:
           EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}

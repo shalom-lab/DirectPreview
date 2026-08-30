@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "plasmo dev",
-    "build": "plasmo build",
+    "build": "plasmo build && node scripts/fix-store-package.mjs",
     "package": "plasmo package",
     "version:sync": "node scripts/sync-version.mjs"
   },
@@ -37,6 +37,7 @@
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "pngjs": "^7.0.0",
     "postcss": "8.4.33",
     "prettier": "3.2.4",
     "typescript": "5.3.3"
