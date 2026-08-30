@@ -143,53 +143,91 @@ function DirectPreviewDashboard() {
     }
   }
 
-  const createFromLocalFile = async (file: File) => {
-    setError(null)
+  const createFromLocalFile = async (file: File): Promise<PreviewFile | null> => {
     const decodedName = decodeFilename(file.name)
     const type = resolveFileType(decodedName)
 
     if (!type) {
-      setError(t("error_unsupportedFormat"))
-      return
+      throw te("error_unsupportedFormat")
     }
 
+    assertFileSize(file.size)
+
+    const buffer = await file.arrayBuffer()
+    const bytes = new Uint8Array(buffer)
+    const reconciledType = reconcileFileType(bytes, type)
+
+    if (!validateFileBytes(bytes, reconciledType)) {
+      throw te("error_formatMismatchShort", reconciledType.toUpperCase())
+    }
+
+    const record = buildPreviewRecord({
+      name: alignNameWithType(decodedName, reconciledType),
+      type: reconciledType,
+      buffer
+    })
+
+    await savePreviewRecord(record)
+    return record
+  }
+
+  const importLocalFiles = async (fileList: FileList | File[]) => {
+    const files = Array.from(fileList)
+    if (files.length === 0) return
+
+    setError(null)
+    setIsFetching(true)
+
+    let lastOk: PreviewFile | null = null
+    const failures: string[] = []
+
     try {
-      assertFileSize(file.size)
-
-      const buffer = await file.arrayBuffer()
-      const bytes = new Uint8Array(buffer)
-      const reconciledType = reconcileFileType(bytes, type)
-
-      if (!validateFileBytes(bytes, reconciledType)) {
-        throw te("error_formatMismatchShort", reconciledType.toUpperCase())
+      for (const file of files) {
+        try {
+          const record = await createFromLocalFile(file)
+          if (record) lastOk = record
+        } catch (err) {
+          const reason =
+            err instanceof Error ? err.message : t("error_localReadFailed")
+          failures.push(`${decodeFilename(file.name)}: ${reason}`)
+        }
       }
 
-      const record = buildPreviewRecord({
-        name: alignNameWithType(decodedName, reconciledType),
-        type: reconciledType,
-        buffer
-      })
+      if (lastOk) {
+        setActiveFile(lastOk)
+        document.title = `DirectPreview - ${lastOk.name}`
+      }
 
-      await savePreviewRecord(record)
-      setActiveFile(record)
-      document.title = `DirectPreview - ${record.name}`
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : t("error_localReadFailed")
-      setError(msg)
+      if (failures.length > 0) {
+        if (files.length === 1) {
+          setError(failures[0].replace(/^[^:]+:\s*/, "") || failures[0])
+        } else {
+          const okCount = files.length - failures.length
+          setError(
+            t(
+              "error_batchImportPartial",
+              [String(okCount), String(failures.length), failures.slice(0, 3).join("；")]
+            )
+          )
+        }
+      }
+    } finally {
+      setIsFetching(false)
     }
   }
 
   const handleFileInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) await createFromLocalFile(file)
+    if (e.target.files?.length) {
+      await importLocalFiles(e.target.files)
+    }
     e.target.value = ""
   }
 
   const handleDrop = async (e: React.DragEvent) => {
     e.preventDefault()
-    const file = e.dataTransfer.files?.[0]
-    if (!file) return
-    await createFromLocalFile(file)
+    if (e.dataTransfer.files?.length) {
+      await importLocalFiles(e.dataTransfer.files)
+    }
   }
 
   const updateName = async () => {
@@ -370,6 +408,7 @@ function DirectPreviewDashboard() {
       <input
         ref={fileInputRef}
         type="file"
+        multiple
         accept=".xlsx,.docx,.doc,.pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,application/pdf"
         className="hidden"
         onChange={handleFileInput}

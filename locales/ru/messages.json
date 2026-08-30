@@ -16,7 +16,7 @@
     "description": "Title when no active document"
   },
   "preview_importLocal": {
-    "message": "Импорт локального файла",
+    "message": "Импорт локальных файлов (несколько)",
     "description": "Import button tooltip"
   },
   "preview_clearAll": {
@@ -48,7 +48,7 @@
     "description": "Batch download in progress"
   },
   "preview_dragImport": {
-    "message": "Перетащите или нажмите для импорта",
+    "message": "Перетащите или нажмите для импорта (несколько)",
     "description": "Empty list import hint"
   },
   "preview_formatsHint": {
@@ -496,5 +496,20 @@
   "error_categoryFailed": {
     "message": "Не удалось обновить категорию",
     "description": "Category update failed"
+  },
+  "error_batchImportPartial": {
+    "message": "Импортировано $1$, ошибок $2$: $3$",
+    "description": "Batch import partial",
+    "placeholders": {
+      "ok": {
+        "content": "$1$"
+      },
+      "fail": {
+        "content": "$2$"
+      },
+      "details": {
+        "content": "$3$"
+      }
+    }
   }
 }

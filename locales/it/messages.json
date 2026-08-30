@@ -16,7 +16,7 @@
     "description": "Title when no active document"
   },
   "preview_importLocal": {
-    "message": "Importa file locale",
+    "message": "Importa file locali (più file)",
     "description": "Import button tooltip"
   },
   "preview_clearAll": {
@@ -48,7 +48,7 @@
     "description": "Batch download in progress"
   },
   "preview_dragImport": {
-    "message": "Trascina o clicca per importare",
+    "message": "Trascina o clicca per importare (più file)",
     "description": "Empty list import hint"
   },
   "preview_formatsHint": {
@@ -496,5 +496,20 @@
   "error_categoryFailed": {
     "message": "Aggiornamento categoria non riuscito",
     "description": "Category update failed"
+  },
+  "error_batchImportPartial": {
+    "message": "$1$ importati, $2$ non riusciti: $3$",
+    "description": "Batch import partial",
+    "placeholders": {
+      "ok": {
+        "content": "$1$"
+      },
+      "fail": {
+        "content": "$2$"
+      },
+      "details": {
+        "content": "$3$"
+      }
+    }
   }
 }

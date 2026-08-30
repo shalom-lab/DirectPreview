@@ -16,7 +16,7 @@
     "description": "Title when no active document"
   },
   "preview_importLocal": {
-    "message": "로컬 파일 가져오기",
+    "message": "로컬 파일 가져오기(다중)",
     "description": "Import button tooltip"
   },
   "preview_clearAll": {
@@ -48,7 +48,7 @@
     "description": "Batch download in progress"
   },
   "preview_dragImport": {
-    "message": "끌어다 놓거나 클릭하여 가져오기",
+    "message": "끌어다 놓거나 클릭하여 가져오기(다중)",
     "description": "Empty list import hint"
   },
   "preview_formatsHint": {
@@ -496,5 +496,20 @@
   "error_categoryFailed": {
     "message": "분류 업데이트 실패",
     "description": "Category update failed"
+  },
+  "error_batchImportPartial": {
+    "message": "$1$개 성공, $2$개 실패: $3$",
+    "description": "Batch import partial",
+    "placeholders": {
+      "ok": {
+        "content": "$1$"
+      },
+      "fail": {
+        "content": "$2$"
+      },
+      "details": {
+        "content": "$3$"
+      }
+    }
   }
 }

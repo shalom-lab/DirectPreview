@@ -16,7 +16,7 @@
     "description": "Title when no active document"
   },
   "preview_importLocal": {
-    "message": "Importer un fichier local",
+    "message": "Importer des fichiers locaux (plusieurs)",
     "description": "Import button tooltip"
   },
   "preview_clearAll": {
@@ -48,7 +48,7 @@
     "description": "Batch download in progress"
   },
   "preview_dragImport": {
-    "message": "Glisser ou cliquer pour importer",
+    "message": "Glisser ou cliquer pour importer (plusieurs)",
     "description": "Empty list import hint"
   },
   "preview_formatsHint": {
@@ -496,5 +496,20 @@
   "error_categoryFailed": {
     "message": "Échec de la mise à jour de la catégorie",
     "description": "Category update failed"
+  },
+  "error_batchImportPartial": {
+    "message": "$1$ importé(s), $2$ échec(s) : $3$",
+    "description": "Batch import partial",
+    "placeholders": {
+      "ok": {
+        "content": "$1$"
+      },
+      "fail": {
+        "content": "$2$"
+      },
+      "details": {
+        "content": "$3$"
+      }
+    }
   }
 }

@@ -16,7 +16,7 @@
     "description": "无活动文档时的标题"
   },
   "preview_importLocal": {
-    "message": "导入本地文件",
+    "message": "导入本地文件（可多选）",
     "description": "导入按钮提示"
   },
   "preview_clearAll": {
@@ -48,7 +48,7 @@
     "description": "批量下载进行中"
   },
   "preview_dragImport": {
-    "message": "拖拽或点击导入",
+    "message": "拖拽或点击导入（可多选）",
     "description": "空列表导入提示"
   },
   "preview_formatsHint": {
@@ -508,5 +508,20 @@
   "error_categoryFailed": {
     "message": "更新分类失败",
     "description": "Category update failed"
+  },
+  "error_batchImportPartial": {
+    "message": "成功导入 $1$ 个，失败 $2$ 个：$3$",
+    "description": "批量导入部分失败",
+    "placeholders": {
+      "ok": {
+        "content": "$1$"
+      },
+      "fail": {
+        "content": "$2$"
+      },
+      "details": {
+        "content": "$3$"
+      }
+    }
   }
 }
