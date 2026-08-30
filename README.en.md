@@ -45,10 +45,10 @@
 
 ### Install
 
-1. Download `chrome-mv3-prod.zip` from [**Releases**](https://github.com/shalom-lab/DirectPreview/releases)
+1. Download `DirectPreview-{version}.zip` from [**Releases**](https://github.com/shalom-lab/DirectPreview/releases)
 2. Unzip, then open `chrome://extensions/`
 3. Enable **Developer mode** → **Load unpacked**
-4. Select the unzipped `chrome-mv3-prod` folder
+4. Select the unzipped folder (it must contain `manifest.json` at the root)
 
 ### First use
 
@@ -84,7 +84,7 @@ See [**DEVELOP.md**](DEVELOP.md) for versioning, release process, and workflows.
 npm install
 npm run dev      # load build/chrome-mv3-dev
 npm run build    # output build/chrome-mv3-prod
-npm run package  # produce chrome-mv3-prod.zip
+npm run package  # produce DirectPreview-{version}.zip
 ```
 
 ## 🔧 Stack

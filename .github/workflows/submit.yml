@@ -109,6 +109,6 @@ jobs:
             --client-id "$CLIENT_ID" \
             --client-secret "$CLIENT_SECRET" \
             --refresh-token "$REFRESH_TOKEN" \
-            --source "build/chrome-mv3-prod.zip"
+            --source "build/DirectPreview-${{ steps.meta.outputs.version }}.zip"
             # --auto-publish
           # listing（Privacy / 图标 / 截图 / 描述 / Category）齐全后，去掉上一行注释即可自动发布

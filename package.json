@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build && node scripts/fix-store-package.mjs",
-    "package": "plasmo package",
+    "package": "plasmo package && node scripts/rename-release-zip.mjs",
     "version:sync": "node scripts/sync-version.mjs"
   },
   "dependencies": {

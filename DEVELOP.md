@@ -54,7 +54,7 @@ npm run dev
 
 ```bash
 npm run build    # 产物：build/chrome-mv3-prod/
-npm run package  # 打包：build/chrome-mv3-prod.zip
+npm run package  # 打包：build/DirectPreview-{version}.zip
 ```
 
 ### 本地同步版本号（可选）
@@ -99,8 +99,7 @@ git push origin v1.1.0
 
 | 文件 | 用途 |
 |------|------|
-| `chrome-mv3-prod.zip` | 商店提交 / 直接分发 |
-| `direct-preview-{version}.zip` | 带版本号的同名副本，便于归档 |
+| `DirectPreview-{version}.zip` | GitHub Release / 商店提交 / 手动安装 |
 
 ---
 
@@ -143,7 +142,7 @@ flowchart TD
 |------|------|
 | **Resolve version from tag** | 从 `GITHUB_REF_NAME` 取 tag，去掉 `v` 得到 `VERSION`，正则校验 SemVer |
 | **Sync package.json version** | 运行 `node scripts/sync-version.mjs "$VERSION"` |
-| **Build / Package** | `npm run build` + `npm run package` 生成 `chrome-mv3-prod.zip` |
+| **Build / Package** | `npm run build` + `npm run package` 生成 `DirectPreview-{version}.zip` |
 | **Verify manifest version** | 读取 `build/chrome-mv3-prod/manifest.json`，必须与 tag 版本一致，否则失败 |
 | **Create GitHub Release** | 上传 zip，自动生成 Release Notes |
 

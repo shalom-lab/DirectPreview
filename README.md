@@ -45,10 +45,10 @@
 
 ### 安装扩展
 
-1. 从 [**Releases**](https://github.com/shalom-lab/DirectPreview/releases) 下载 `chrome-mv3-prod.zip`
+1. 从 [**Releases**](https://github.com/shalom-lab/DirectPreview/releases) 下载 `DirectPreview-{version}.zip`
 2. 解压后打开 `chrome://extensions/`
 3. 开启 **开发者模式** → **加载已解压的扩展程序**
-4. 选择解压后的 `chrome-mv3-prod` 目录
+4. 选择解压目录（根目录须有 `manifest.json`）
 
 ### 开始使用
 
@@ -84,7 +84,7 @@
 npm install
 npm run dev      # 加载 build/chrome-mv3-dev
 npm run build    # 产物 build/chrome-mv3-prod
-npm run package  # 生成 chrome-mv3-prod.zip
+npm run package  # 生成 DirectPreview-{version}.zip
 ```
 
 ## 🔧 技术栈
