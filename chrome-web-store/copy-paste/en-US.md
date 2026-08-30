@@ -12,6 +12,8 @@ Map each block below to **Developer Dashboard → Store listing**.
 | **Summary** (max 132 chars) | Preview Office & PDF links instantly—click the eye beside downloads. Local archive, Excel tools, eye-care themes. |
 | **Category** | Productivity |
 | **Language** | English |
+| **Official URL / Homepage** | https://github.com/shalom-lab/DirectPreview |
+| **Support URL** (optional) | https://github.com/shalom-lab/DirectPreview/issues |
 
 ### Detailed description (paste into “Description”)
 

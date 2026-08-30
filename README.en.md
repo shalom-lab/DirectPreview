@@ -11,6 +11,8 @@
 [![Stars](https://img.shields.io/github/stars/shalom-lab/DirectPreview?style=flat&logo=github&color=2563EB)](https://github.com/shalom-lab/DirectPreview)
 [![简体中文](https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-README-2563EB?style=flat)](README.md)
 
+**Repository:** [github.com/shalom-lab/DirectPreview](https://github.com/shalom-lab/DirectPreview)
+
 </div>
 
 ## ✨ Features

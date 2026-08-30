@@ -4,6 +4,14 @@
   "version": "1.0.0",
   "description": "__MSG_extDescription__",
   "author": "Shaolong Ren",
+  "homepage": "https://github.com/shalom-lab/DirectPreview",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shalom-lab/DirectPreview.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shalom-lab/DirectPreview/issues"
+  },
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
