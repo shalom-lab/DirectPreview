@@ -513,14 +513,14 @@
     "message": "成功导入 $1$ 个，失败 $2$ 个：$3$",
     "description": "批量导入部分失败",
     "placeholders": {
-      "ok": {
-        "content": "$1$"
+      "1": {
+        "content": "$1"
       },
-      "fail": {
-        "content": "$2$"
+      "2": {
+        "content": "$2"
       },
-      "details": {
-        "content": "$3$"
+      "3": {
+        "content": "$3"
       }
     }
   }

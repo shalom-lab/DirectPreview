@@ -513,14 +513,14 @@
     "message": "Imported $1$, failed $2$: $3$",
     "description": "Partial batch import failure",
     "placeholders": {
-      "ok": {
-        "content": "$1$"
+      "1": {
+        "content": "$1"
       },
-      "fail": {
-        "content": "$2$"
+      "2": {
+        "content": "$2"
       },
-      "details": {
-        "content": "$3$"
+      "3": {
+        "content": "$3"
       }
     }
   }
