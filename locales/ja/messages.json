@@ -460,5 +460,41 @@
   "settings_language_it": {
     "message": "Italiano",
     "description": "Language name"
+  },
+  "settings_categories": {
+    "message": "カテゴリ",
+    "description": "Settings categories"
+  },
+  "settings_categories_hint": {
+    "message": "1行に1つのカテゴリ名。削除・改名は保存済みファイルに同期されます。",
+    "description": "Categories hint"
+  },
+  "settings_categories_placeholder": {
+    "message": "仕事\n学習\n個人",
+    "description": "Categories placeholder"
+  },
+  "settings_categories_saving": {
+    "message": "保存中…",
+    "description": "Categories saving"
+  },
+  "preview_category": {
+    "message": "カテゴリ",
+    "description": "File category label"
+  },
+  "preview_category_none": {
+    "message": "未分類",
+    "description": "Uncategorized"
+  },
+  "preview_filter_category": {
+    "message": "カテゴリで絞り込み",
+    "description": "Category filter"
+  },
+  "preview_filter_category_all": {
+    "message": "すべてのカテゴリ",
+    "description": "All categories"
+  },
+  "error_categoryFailed": {
+    "message": "カテゴリの更新に失敗しました",
+    "description": "Category update failed"
   }
 }

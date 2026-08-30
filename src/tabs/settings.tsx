@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 import {
   AppSettingsProvider,
@@ -6,10 +6,15 @@ import {
   useAppSettings,
   type ThemeId
 } from "~providers/AppSettingsProvider"
+import { syncFileCategoriesAfterSettingsChange } from "~db"
+import {
+  diffCategories,
+  normalizeCategories
+} from "~utils/categories"
+import { GITHUB_REPO_URL, GITHUB_STARS_BADGE_URL } from "~utils/github"
 import { LOCALE_OPTIONS } from "~utils/locales"
 import type { LocaleId } from "~utils/settings"
 import { THEMES } from "~utils/settings"
-import { GITHUB_REPO_URL, GITHUB_STARS_BADGE_URL } from "~utils/github"
 import "~style.css"
 
 const THEME_OPTIONS: ThemeId[] = [
@@ -52,6 +57,35 @@ function SettingsCard({
 
 function SettingsContent() {
   const { settings, ready, updateSettings, t } = useAppSettings()
+  const [categoriesDraft, setCategoriesDraft] = useState("")
+  const [categoriesSaving, setCategoriesSaving] = useState(false)
+
+  useEffect(() => {
+    if (!ready) return
+    setCategoriesDraft(settings.categories.join("\n"))
+  }, [ready, settings.categories])
+
+  const saveCategories = async () => {
+    const previous = settings.categories
+    const next = normalizeCategories(categoriesDraft)
+    setCategoriesDraft(next.join("\n"))
+
+    if (
+      previous.length === next.length &&
+      previous.every((name, i) => name === next[i])
+    ) {
+      return
+    }
+
+    setCategoriesSaving(true)
+    try {
+      const { renames, deleted } = diffCategories(previous, next)
+      await updateSettings({ categories: next })
+      await syncFileCategoriesAfterSettingsChange(renames, deleted)
+    } finally {
+      setCategoriesSaving(false)
+    }
+  }
 
   if (!ready) {
     return (
@@ -135,6 +169,27 @@ function SettingsContent() {
               )
             })}
           </div>
+        </SettingsCard>
+
+        <SettingsCard title={t("settings_categories")}>
+          <p className="text-xs dp-text-muted mb-3 leading-relaxed">
+            {t("settings_categories_hint")}
+          </p>
+          <textarea
+            value={categoriesDraft}
+            onChange={(e) => setCategoriesDraft(e.target.value)}
+            onBlur={() => {
+              void saveCategories()
+            }}
+            rows={6}
+            placeholder={t("settings_categories_placeholder")}
+            className="w-full px-3 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-200 dp-viewer-input resize-y min-h-[8rem] font-mono leading-relaxed"
+          />
+          {categoriesSaving && (
+            <p className="text-xs dp-text-muted mt-2">
+              {t("settings_categories_saving")}
+            </p>
+          )}
         </SettingsCard>
 
         <SettingsCard title={t("settings_github_title")}>

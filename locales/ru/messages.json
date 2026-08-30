@@ -460,5 +460,41 @@
   "settings_language_it": {
     "message": "Italiano",
     "description": "Language name"
+  },
+  "settings_categories": {
+    "message": "Категории",
+    "description": "Settings categories"
+  },
+  "settings_categories_hint": {
+    "message": "Одно название категории в строке. Переименование и удаление синхронизируются с файлами.",
+    "description": "Categories hint"
+  },
+  "settings_categories_placeholder": {
+    "message": "Работа\nУчёба\nЛичное",
+    "description": "Categories placeholder"
+  },
+  "settings_categories_saving": {
+    "message": "Сохранение…",
+    "description": "Categories saving"
+  },
+  "preview_category": {
+    "message": "Категория",
+    "description": "File category label"
+  },
+  "preview_category_none": {
+    "message": "Без категории",
+    "description": "Uncategorized"
+  },
+  "preview_filter_category": {
+    "message": "Фильтр по категории",
+    "description": "Category filter"
+  },
+  "preview_filter_category_all": {
+    "message": "Все категории",
+    "description": "All categories"
+  },
+  "error_categoryFailed": {
+    "message": "Не удалось обновить категорию",
+    "description": "Category update failed"
   }
 }

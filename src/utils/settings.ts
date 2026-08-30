@@ -2,6 +2,7 @@ export const SETTINGS_STORAGE_KEY = "directpreview_settings"
 
 import type { AppLocale } from "~utils/locales"
 import { isAppLocale } from "~utils/locales"
+import { normalizeCategories } from "~utils/categories"
 
 export type ThemeId = "default" | "eye-green" | "eye-yellow" | "eye-blue"
 export type LocaleId = "auto" | AppLocale
@@ -9,6 +10,8 @@ export type LocaleId = "auto" | AppLocale
 export interface AppSettings {
   theme: ThemeId
   locale: LocaleId
+  /** One category name per entry; managed via settings textarea. */
+  categories: string[]
 }
 
 export interface ThemeTokens {
@@ -26,7 +29,8 @@ export interface ThemeTokens {
 
 export const DEFAULT_SETTINGS: AppSettings = {
   theme: "default",
-  locale: "auto"
+  locale: "auto",
+  categories: []
 }
 
 export const THEMES: Record<ThemeId, ThemeTokens> = {
@@ -104,7 +108,10 @@ export async function loadSettings(): Promise<AppSettings> {
 
     return {
       theme: isThemeId(stored.theme) ? stored.theme : DEFAULT_SETTINGS.theme,
-      locale: isLocaleId(stored.locale) ? stored.locale : DEFAULT_SETTINGS.locale
+      locale: isLocaleId(stored.locale) ? stored.locale : DEFAULT_SETTINGS.locale,
+      categories: Array.isArray(stored.categories)
+        ? normalizeCategories(stored.categories)
+        : DEFAULT_SETTINGS.categories
     }
   } catch {
     return { ...DEFAULT_SETTINGS }
@@ -112,7 +119,11 @@ export async function loadSettings(): Promise<AppSettings> {
 }
 
 export async function saveSettings(settings: AppSettings): Promise<void> {
-  await chrome.storage.local.set({ [SETTINGS_STORAGE_KEY]: settings })
+  const normalized: AppSettings = {
+    ...settings,
+    categories: normalizeCategories(settings.categories)
+  }
+  await chrome.storage.local.set({ [SETTINGS_STORAGE_KEY]: normalized })
 }
 
 function isThemeId(value: unknown): value is ThemeId {

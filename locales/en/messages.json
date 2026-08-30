@@ -472,5 +472,41 @@
   "settings_star_cta": {
     "message": "Star on GitHub",
     "description": "GitHub star CTA"
+  },
+  "settings_categories": {
+    "message": "Categories",
+    "description": "Settings categories"
+  },
+  "settings_categories_hint": {
+    "message": "One category name per line. Renames and deletes sync to archived files.",
+    "description": "Categories hint"
+  },
+  "settings_categories_placeholder": {
+    "message": "Work\nStudy\nPersonal",
+    "description": "Categories placeholder"
+  },
+  "settings_categories_saving": {
+    "message": "Saving…",
+    "description": "Categories saving"
+  },
+  "preview_category": {
+    "message": "Category",
+    "description": "File category label"
+  },
+  "preview_category_none": {
+    "message": "Uncategorized",
+    "description": "Uncategorized"
+  },
+  "preview_filter_category": {
+    "message": "Filter by category",
+    "description": "Category filter"
+  },
+  "preview_filter_category_all": {
+    "message": "All categories",
+    "description": "All categories"
+  },
+  "error_categoryFailed": {
+    "message": "Failed to update category",
+    "description": "Category update failed"
   }
 }

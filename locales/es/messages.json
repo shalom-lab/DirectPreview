@@ -460,5 +460,41 @@
   "settings_language_it": {
     "message": "Italiano",
     "description": "Language name"
+  },
+  "settings_categories": {
+    "message": "Categorías",
+    "description": "Settings categories"
+  },
+  "settings_categories_hint": {
+    "message": "Un nombre de categoría por línea. Renombrar o eliminar se sincroniza con los archivos.",
+    "description": "Categories hint"
+  },
+  "settings_categories_placeholder": {
+    "message": "Trabajo\nEstudio\nPersonal",
+    "description": "Categories placeholder"
+  },
+  "settings_categories_saving": {
+    "message": "Guardando…",
+    "description": "Categories saving"
+  },
+  "preview_category": {
+    "message": "Categoría",
+    "description": "File category label"
+  },
+  "preview_category_none": {
+    "message": "Sin categoría",
+    "description": "Uncategorized"
+  },
+  "preview_filter_category": {
+    "message": "Filtrar por categoría",
+    "description": "Category filter"
+  },
+  "preview_filter_category_all": {
+    "message": "Todas las categorías",
+    "description": "All categories"
+  },
+  "error_categoryFailed": {
+    "message": "Error al actualizar la categoría",
+    "description": "Category update failed"
   }
 }

@@ -472,5 +472,41 @@
   "settings_star_cta": {
     "message": "在 GitHub 上 Star",
     "description": "GitHub star CTA"
+  },
+  "settings_categories": {
+    "message": "分类管理",
+    "description": "Settings categories"
+  },
+  "settings_categories_hint": {
+    "message": "每行一个分类名称。删除或改名后，已归档文件会同步更新。",
+    "description": "Categories hint"
+  },
+  "settings_categories_placeholder": {
+    "message": "工作\n学习\n个人",
+    "description": "Categories placeholder"
+  },
+  "settings_categories_saving": {
+    "message": "正在保存…",
+    "description": "Categories saving"
+  },
+  "preview_category": {
+    "message": "分类",
+    "description": "File category label"
+  },
+  "preview_category_none": {
+    "message": "未分类",
+    "description": "Uncategorized"
+  },
+  "preview_filter_category": {
+    "message": "按分类筛选",
+    "description": "Category filter"
+  },
+  "preview_filter_category_all": {
+    "message": "全部分类",
+    "description": "All categories"
+  },
+  "error_categoryFailed": {
+    "message": "更新分类失败",
+    "description": "Category update failed"
   }
 }

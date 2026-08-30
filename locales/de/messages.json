@@ -460,5 +460,41 @@
   "settings_language_it": {
     "message": "Italiano",
     "description": "Language name"
+  },
+  "settings_categories": {
+    "message": "Kategorien",
+    "description": "Settings categories"
+  },
+  "settings_categories_hint": {
+    "message": "Ein Kategoriename pro Zeile. Umbenennen und Löschen werden auf Dateien synchronisiert.",
+    "description": "Categories hint"
+  },
+  "settings_categories_placeholder": {
+    "message": "Arbeit\nStudium\nPrivat",
+    "description": "Categories placeholder"
+  },
+  "settings_categories_saving": {
+    "message": "Speichern…",
+    "description": "Categories saving"
+  },
+  "preview_category": {
+    "message": "Kategorie",
+    "description": "File category label"
+  },
+  "preview_category_none": {
+    "message": "Ohne Kategorie",
+    "description": "Uncategorized"
+  },
+  "preview_filter_category": {
+    "message": "Nach Kategorie filtern",
+    "description": "Category filter"
+  },
+  "preview_filter_category_all": {
+    "message": "Alle Kategorien",
+    "description": "All categories"
+  },
+  "error_categoryFailed": {
+    "message": "Kategorie konnte nicht aktualisiert werden",
+    "description": "Category update failed"
   }
 }

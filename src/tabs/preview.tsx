@@ -5,7 +5,8 @@ import { WordViewer } from "~components/WordViewer"
 import { DocxViewer } from "~components/DocxViewer"
 import { ExcelViewer } from "~components/ExcelViewer"
 import { PdfViewer } from "~components/PdfViewer"
-import { buildPreviewRecord, db, savePreviewRecord, type PreviewFile } from "~db"
+import { buildPreviewRecord, db, savePreviewRecord, updateFileCategory, type PreviewFile } from "~db"
+import { getCategoryColor } from "~utils/categories"
 import {
   alignNameWithType,
   consumePendingPreview,
@@ -31,7 +32,7 @@ type DeleteConfirm =
   | { kind: "all"; count: number }
 
 function DirectPreviewDashboard() {
-  const { t } = useAppSettings()
+  const { t, settings } = useAppSettings()
   const [activeFile, setActiveFile] = useState<PreviewFile | null>(null)
   const [isFetching, setIsFetching] = useState(false)
   const [isRenaming, setIsRenaming] = useState(false)
@@ -39,6 +40,7 @@ function DirectPreviewDashboard() {
   const [error, setError] = useState<string | null>(null)
   const [deleteConfirm, setDeleteConfirm] = useState<DeleteConfirm | null>(null)
   const [listQuery, setListQuery] = useState("")
+  const [categoryFilter, setCategoryFilter] = useState<string>("__all__")
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [isBatchDownloading, setIsBatchDownloading] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -52,9 +54,16 @@ function DirectPreviewDashboard() {
   const filteredHistory = useMemo(() => {
     if (!documentHistory) return []
     const q = listQuery.trim().toLowerCase()
-    if (!q) return documentHistory
-    return documentHistory.filter((f) => f.name.toLowerCase().includes(q))
-  }, [documentHistory, listQuery])
+    return documentHistory.filter((f) => {
+      if (categoryFilter === "__none__") {
+        if (f.category) return false
+      } else if (categoryFilter !== "__all__") {
+        if (f.category !== categoryFilter) return false
+      }
+      if (q && !f.name.toLowerCase().includes(q)) return false
+      return true
+    })
+  }, [documentHistory, listQuery, categoryFilter])
 
   const selectedCount = selectedIds.size
   const allFilteredSelected =
@@ -102,6 +111,15 @@ function DirectPreviewDashboard() {
       renameInputRef.current?.select()
     }
   }, [isRenaming])
+
+  useEffect(() => {
+    if (!activeFile || !documentHistory) return
+    const latest = documentHistory.find((f) => f.id === activeFile.id)
+    if (!latest) return
+    if (latest.category !== activeFile.category || latest.name !== activeFile.name) {
+      setActiveFile(latest)
+    }
+  }, [documentHistory, activeFile])
 
   const createFromUrl = async (url: string, name: string, type: string) => {
     setIsFetching(true)
@@ -205,6 +223,18 @@ function DirectPreviewDashboard() {
       setError(err instanceof Error ? err.message : t("error_renameFailed"))
     } finally {
       setIsRenaming(false)
+    }
+  }
+
+  const changeCategory = async (category: string) => {
+    if (!activeFile) return
+    const next = category.trim() || undefined
+    try {
+      await updateFileCategory(activeFile.id, next)
+      const updated = { ...activeFile, category: next }
+      setActiveFile(updated)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t("error_categoryFailed"))
     }
   }
 
@@ -388,6 +418,19 @@ function DirectPreviewDashboard() {
             placeholder={t("preview_filterPlaceholder")}
             className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
           />
+          <select
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+            className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-300 bg-white"
+            aria-label={t("preview_filter_category")}>
+            <option value="__all__">{t("preview_filter_category_all")}</option>
+            <option value="__none__">{t("preview_category_none")}</option>
+            {settings.categories.map((name) => (
+              <option key={name} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
           <div className="flex items-center justify-between gap-2">
             <label className="flex items-center gap-2 text-xs text-slate-500 cursor-pointer select-none">
               <input
@@ -398,7 +441,7 @@ function DirectPreviewDashboard() {
                 className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
               />
               {t("preview_selectAll")}
-              {listQuery && (
+              {(listQuery || categoryFilter !== "__all__") && (
                 <span className="text-slate-400">({filteredHistory.length})</span>
               )}
             </label>
@@ -468,9 +511,26 @@ function DirectPreviewDashboard() {
                       </button>
                     </div>
                   </div>
-                  <div className="text-xs text-slate-400 mt-1 flex justify-between">
-                    <span>{f.type.toUpperCase()}</span>
-                    <span>{formatSize(f.size)}</span>
+                  <div className="text-xs text-slate-400 mt-1 flex justify-between items-center gap-2">
+                    <span className="flex items-center gap-1.5 min-w-0">
+                      <span className="flex-shrink-0">{f.type.toUpperCase()}</span>
+                      {f.category && (() => {
+                        const color = getCategoryColor(f.category)
+                        return (
+                          <span
+                            className="truncate max-w-[7rem] px-1.5 py-0.5 rounded text-[10px] font-medium border"
+                            style={{
+                              backgroundColor: color.bg,
+                              color: color.text,
+                              borderColor: color.border
+                            }}
+                            title={f.category}>
+                            {f.category}
+                          </span>
+                        )
+                      })()}
+                    </span>
+                    <span className="flex-shrink-0">{formatSize(f.size)}</span>
                   </div>
                 </div>
               </div>
@@ -521,10 +581,34 @@ function DirectPreviewDashboard() {
               </div>
             )}
             {activeFile && (
-              <p className="text-xs text-slate-400 mt-0.5">
-                {formatSize(activeFile.size)} ·{" "}
-                {new Date(activeFile.createdAt).toLocaleString()}
-              </p>
+              <div className="mt-1 flex flex-wrap items-center gap-2">
+                <p className="text-xs text-slate-400">
+                  {formatSize(activeFile.size)} ·{" "}
+                  {new Date(activeFile.createdAt).toLocaleString()}
+                </p>
+                <label className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <span className="flex-shrink-0">{t("preview_category")}</span>
+                  <select
+                    value={activeFile.category || ""}
+                    onChange={(e) => {
+                      void changeCategory(e.target.value)
+                    }}
+                    className="max-w-[10rem] px-2 py-0.5 text-xs border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200 bg-white text-slate-700">
+                    <option value="">{t("preview_category_none")}</option>
+                    {settings.categories.map((name) => (
+                      <option key={name} value={name}>
+                        {name}
+                      </option>
+                    ))}
+                    {activeFile.category &&
+                      !settings.categories.includes(activeFile.category) && (
+                        <option value={activeFile.category}>
+                          {activeFile.category}
+                        </option>
+                      )}
+                  </select>
+                </label>
+              </div>
             )}
           </div>
 

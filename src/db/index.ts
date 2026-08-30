@@ -27,6 +27,8 @@ export interface PreviewFile {
   size: number
   blob: Blob
   createdAt: number
+  /** Single category name; empty/undefined = uncategorized */
+  category?: string
 }
 
 export function buildPreviewRecord({
@@ -90,6 +92,10 @@ class DirectPreviewDB extends Dexie {
           }
         }
       })
+
+    this.version(3).stores({
+      files: "id, name, type, url, createdAt, category"
+    })
   }
 }
 
@@ -98,6 +104,52 @@ export const db = new DirectPreviewDB()
 export async function savePreviewRecord(record: PreviewFile): Promise<void> {
   await db.files.put(record)
   await pruneHistoryIfNeeded()
+}
+
+export async function updateFileCategory(
+  id: string,
+  category: string | undefined
+): Promise<void> {
+  const value = category?.trim() || ""
+  await db.files
+    .where("id")
+    .equals(id)
+    .modify((file) => {
+      if (value) {
+        file.category = value
+      } else {
+        delete file.category
+      }
+    })
+}
+
+/** Apply renames then clear categories that no longer exist in settings. */
+export async function syncFileCategoriesAfterSettingsChange(
+  renames: Map<string, string>,
+  deleted: string[]
+): Promise<void> {
+  if (renames.size === 0 && deleted.length === 0) return
+
+  const files = await db.files.toArray()
+  const updates: PreviewFile[] = []
+
+  for (const file of files) {
+    if (!file.category) continue
+
+    if (renames.has(file.category)) {
+      updates.push({ ...file, category: renames.get(file.category) })
+      continue
+    }
+
+    if (deleted.includes(file.category)) {
+      const { category: _removed, ...rest } = file
+      updates.push(rest as PreviewFile)
+    }
+  }
+
+  if (updates.length > 0) {
+    await db.files.bulkPut(updates)
+  }
 }
 
 async function pruneHistoryIfNeeded(): Promise<void> {

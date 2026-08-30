@@ -460,5 +460,41 @@
   "settings_language_it": {
     "message": "Italiano",
     "description": "Language name"
+  },
+  "settings_categories": {
+    "message": "분류",
+    "description": "Settings categories"
+  },
+  "settings_categories_hint": {
+    "message": "한 줄에 분류 이름 하나. 삭제·이름 변경은 저장된 파일에 동기화됩니다.",
+    "description": "Categories hint"
+  },
+  "settings_categories_placeholder": {
+    "message": "업무\n학습\n개인",
+    "description": "Categories placeholder"
+  },
+  "settings_categories_saving": {
+    "message": "저장 중…",
+    "description": "Categories saving"
+  },
+  "preview_category": {
+    "message": "분류",
+    "description": "File category label"
+  },
+  "preview_category_none": {
+    "message": "미분류",
+    "description": "Uncategorized"
+  },
+  "preview_filter_category": {
+    "message": "분류로 필터",
+    "description": "Category filter"
+  },
+  "preview_filter_category_all": {
+    "message": "전체 분류",
+    "description": "All categories"
+  },
+  "error_categoryFailed": {
+    "message": "분류 업데이트 실패",
+    "description": "Category update failed"
   }
 }
