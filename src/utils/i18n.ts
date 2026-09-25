@@ -12,7 +12,12 @@ import zhCNMessages from "../../locales/zh_CN/messages.json"
 import { detectAppLocale, type AppLocale } from "~utils/locales"
 import type { LocaleId } from "~utils/settings"
 
-type MessageBundle = Record<string, { message: string }>
+type MessageEntry = {
+  message: string
+  placeholders?: Record<string, { content: string; example?: string }>
+}
+
+type MessageBundle = Record<string, MessageEntry>
 
 const BUNDLES: Record<AppLocale, MessageBundle> = {
   zh_CN: zhCNMessages,
@@ -56,11 +61,10 @@ export function t(
   substitutions?: string | string[]
 ): string {
   const locale = resolveLocale()
-  const message =
-    BUNDLES[locale][key]?.message ?? BUNDLES.en[key]?.message ?? key
+  const entry = BUNDLES[locale][key] ?? BUNDLES.en[key]
 
-  if (message !== key) {
-    return applySubstitutions(message, substitutions)
+  if (entry?.message) {
+    return applySubstitutions(entry.message, substitutions, entry.placeholders)
   }
 
   try {
@@ -72,7 +76,7 @@ export function t(
     // ignore
   }
 
-  return applySubstitutions(message, substitutions)
+  return key
 }
 
 export function te(
@@ -90,20 +94,27 @@ export async function initLocaleFromStorage(): Promise<void> {
 
 function applySubstitutions(
   message: string,
-  substitutions?: string | string[]
+  substitutions?: string | string[],
+  placeholders?: MessageEntry["placeholders"]
 ): string {
   if (!substitutions) return message
 
   const subs = Array.isArray(substitutions) ? substitutions : [substitutions]
   let result = message
 
+  if (placeholders) {
+    for (const [name, def] of Object.entries(placeholders)) {
+      const indexMatch = def.content.match(/\$(\d+)/)
+      if (!indexMatch) continue
+      const value = subs[Number(indexMatch[1]) - 1] ?? ""
+      result = result.replace(new RegExp(`\\$${name}\\$`, "gi"), value)
+    }
+    return result
+  }
+
   subs.forEach((sub, index) => {
     result = result.replace(new RegExp(`\\$${index + 1}\\$`, "g"), sub)
   })
-
-  if (subs.length > 0) {
-    result = result.replace(/\$[A-Z][A-Z0-9_]*\$/g, () => subs[0])
-  }
 
   return result
 }

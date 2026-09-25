@@ -461,6 +461,22 @@
     "message": "Italiano",
     "description": "Language name"
   },
+  "settings_data": {
+    "message": "Datos",
+    "description": "Settings data section"
+  },
+  "settings_clearAll_hint": {
+    "message": "Borra todo el historial de vista previa local y los archivos en caché. Esta acción no se puede deshacer.",
+    "description": "Clear all hint"
+  },
+  "settings_clearAll_btn": {
+    "message": "Borrar todo el historial",
+    "description": "Clear all button"
+  },
+  "settings_clearAll_done": {
+    "message": "Historial borrado",
+    "description": "Clear all success"
+  },
   "settings_categories": {
     "message": "Categorías",
     "description": "Settings categories"
@@ -498,18 +514,59 @@
     "description": "Category update failed"
   },
   "error_batchImportPartial": {
-    "message": "Importados $1$, fallidos $2$: $3$",
+    "message": "Importados $OK$, fallidos $FAIL$: $DETAIL$",
     "description": "Batch import partial",
     "placeholders": {
-      "1": {
-        "content": "$1"
+      "ok": {
+        "content": "$1",
+        "example": "3"
       },
-      "2": {
-        "content": "$2"
+      "fail": {
+        "content": "$2",
+        "example": "1"
       },
-      "3": {
-        "content": "$3"
+      "detail": {
+        "content": "$3",
+        "example": "a.doc"
       }
     }
+  },
+  "doc_search_placeholder": {
+    "message": "Buscar en el documento…",
+    "description": "Document search placeholder"
+  },
+  "doc_search_hint": {
+    "message": "Escribe para resaltar",
+    "description": "Document search idle hint"
+  },
+  "doc_search_count": {
+    "message": "$CURRENT$ / $TOTAL$",
+    "description": "Document search match count",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "1"
+      },
+      "total": {
+        "content": "$2",
+        "example": "10"
+      }
+    }
+  },
+  "doc_search_none": {
+    "message": "Sin coincidencias",
+    "description": "Document search no matches"
+  },
+  "doc_search_prev": {
+    "message": "Anterior",
+    "description": "Document search previous"
+  },
+  "doc_search_next": {
+    "message": "Siguiente",
+    "description": "Document search next"
+  },
+  "doc_search_drag": {
+    "message": "Arrastrar para mover",
+    "description": "Search bar drag handle"
   }
 }

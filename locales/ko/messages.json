@@ -461,6 +461,22 @@
     "message": "Italiano",
     "description": "Language name"
   },
+  "settings_data": {
+    "message": "데이터 관리",
+    "description": "Settings data section"
+  },
+  "settings_clearAll_hint": {
+    "message": "로컬 미리보기 기록과 캐시 파일을 모두 삭제합니다. 이 작업은 되돌릴 수 없습니다.",
+    "description": "Clear all hint"
+  },
+  "settings_clearAll_btn": {
+    "message": "전체 기록 삭제",
+    "description": "Clear all button"
+  },
+  "settings_clearAll_done": {
+    "message": "기록을 모두 삭제했습니다",
+    "description": "Clear all success"
+  },
   "settings_categories": {
     "message": "분류",
     "description": "Settings categories"
@@ -498,18 +514,59 @@
     "description": "Category update failed"
   },
   "error_batchImportPartial": {
-    "message": "$1$개 성공, $2$개 실패: $3$",
+    "message": "$OK$臧?靹标车, $FAIL$臧?鞁ろ尐: $DETAIL$",
     "description": "Batch import partial",
     "placeholders": {
-      "1": {
-        "content": "$1"
+      "ok": {
+        "content": "$1",
+        "example": "3"
       },
-      "2": {
-        "content": "$2"
+      "fail": {
+        "content": "$2",
+        "example": "1"
       },
-      "3": {
-        "content": "$3"
+      "detail": {
+        "content": "$3",
+        "example": "a.doc"
       }
     }
+  },
+  "doc_search_placeholder": {
+    "message": "문서에서 검색…",
+    "description": "Document search placeholder"
+  },
+  "doc_search_hint": {
+    "message": "입력하여 강조",
+    "description": "Document search idle hint"
+  },
+  "doc_search_count": {
+    "message": "$CURRENT$ / $TOTAL$",
+    "description": "Document search match count",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "1"
+      },
+      "total": {
+        "content": "$2",
+        "example": "10"
+      }
+    }
+  },
+  "doc_search_none": {
+    "message": "일치 항목 없음",
+    "description": "Document search no matches"
+  },
+  "doc_search_prev": {
+    "message": "이전 일치",
+    "description": "Document search previous"
+  },
+  "doc_search_next": {
+    "message": "다음 일치",
+    "description": "Document search next"
+  },
+  "doc_search_drag": {
+    "message": "드래그하여 이동",
+    "description": "Search bar drag handle"
   }
 }

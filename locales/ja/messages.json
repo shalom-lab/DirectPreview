@@ -461,6 +461,22 @@
     "message": "Italiano",
     "description": "Language name"
   },
+  "settings_data": {
+    "message": "データ管理",
+    "description": "Settings data section"
+  },
+  "settings_clearAll_hint": {
+    "message": "ローカルのプレビュー履歴とキャッシュをすべて削除します。この操作は元に戻せません。",
+    "description": "Clear all hint"
+  },
+  "settings_clearAll_btn": {
+    "message": "履歴をすべて削除",
+    "description": "Clear all button"
+  },
+  "settings_clearAll_done": {
+    "message": "履歴をすべて削除しました",
+    "description": "Clear all success"
+  },
   "settings_categories": {
     "message": "カテゴリ",
     "description": "Settings categories"
@@ -498,18 +514,59 @@
     "description": "Category update failed"
   },
   "error_batchImportPartial": {
-    "message": "$1$ 件成功、$2$ 件失敗：$3$",
+    "message": "$OK$ 浠舵垚鍔熴€?FAIL$ 浠跺け鏁楋細$DETAIL$",
     "description": "Batch import partial",
     "placeholders": {
-      "1": {
-        "content": "$1"
+      "ok": {
+        "content": "$1",
+        "example": "3"
       },
-      "2": {
-        "content": "$2"
+      "fail": {
+        "content": "$2",
+        "example": "1"
       },
-      "3": {
-        "content": "$3"
+      "detail": {
+        "content": "$3",
+        "example": "a.doc"
       }
     }
+  },
+  "doc_search_placeholder": {
+    "message": "ドキュメント内を検索…",
+    "description": "Document search placeholder"
+  },
+  "doc_search_hint": {
+    "message": "入力してハイライト",
+    "description": "Document search idle hint"
+  },
+  "doc_search_count": {
+    "message": "$CURRENT$ / $TOTAL$",
+    "description": "Document search match count",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "1"
+      },
+      "total": {
+        "content": "$2",
+        "example": "10"
+      }
+    }
+  },
+  "doc_search_none": {
+    "message": "一致なし",
+    "description": "Document search no matches"
+  },
+  "doc_search_prev": {
+    "message": "前の一致",
+    "description": "Document search previous"
+  },
+  "doc_search_next": {
+    "message": "次の一致",
+    "description": "Document search next"
+  },
+  "doc_search_drag": {
+    "message": "ドラッグして移動",
+    "description": "Search bar drag handle"
   }
 }

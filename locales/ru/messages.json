@@ -461,6 +461,22 @@
     "message": "Italiano",
     "description": "Language name"
   },
+  "settings_data": {
+    "message": "Данные",
+    "description": "Settings data section"
+  },
+  "settings_clearAll_hint": {
+    "message": "Удаляет всю локальную историю просмотра и кэшированные файлы. Это действие нельзя отменить.",
+    "description": "Clear all hint"
+  },
+  "settings_clearAll_btn": {
+    "message": "Очистить всю историю",
+    "description": "Clear all button"
+  },
+  "settings_clearAll_done": {
+    "message": "История очищена",
+    "description": "Clear all success"
+  },
   "settings_categories": {
     "message": "Категории",
     "description": "Settings categories"
@@ -498,18 +514,59 @@
     "description": "Category update failed"
   },
   "error_batchImportPartial": {
-    "message": "Импортировано $1$, ошибок $2$: $3$",
+    "message": "袠屑锌芯褉褌懈褉芯胁邪薪芯 $OK$, 芯褕懈斜芯泻 $FAIL$: $DETAIL$",
     "description": "Batch import partial",
     "placeholders": {
-      "1": {
-        "content": "$1"
+      "ok": {
+        "content": "$1",
+        "example": "3"
       },
-      "2": {
-        "content": "$2"
+      "fail": {
+        "content": "$2",
+        "example": "1"
       },
-      "3": {
-        "content": "$3"
+      "detail": {
+        "content": "$3",
+        "example": "a.doc"
       }
     }
+  },
+  "doc_search_placeholder": {
+    "message": "Поиск по документу…",
+    "description": "Document search placeholder"
+  },
+  "doc_search_hint": {
+    "message": "Введите для подсветки",
+    "description": "Document search idle hint"
+  },
+  "doc_search_count": {
+    "message": "$CURRENT$ / $TOTAL$",
+    "description": "Document search match count",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "1"
+      },
+      "total": {
+        "content": "$2",
+        "example": "10"
+      }
+    }
+  },
+  "doc_search_none": {
+    "message": "Нет совпадений",
+    "description": "Document search no matches"
+  },
+  "doc_search_prev": {
+    "message": "Предыдущее",
+    "description": "Document search previous"
+  },
+  "doc_search_next": {
+    "message": "Следующее",
+    "description": "Document search next"
+  },
+  "doc_search_drag": {
+    "message": "Перетащите, чтобы переместить",
+    "description": "Search bar drag handle"
   }
 }

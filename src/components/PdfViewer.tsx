@@ -1,14 +1,21 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import * as pdfjsLib from "pdfjs-dist"
 
+import { DocumentSearchBar } from "~components/DocumentSearchBar"
 import { validateFileBytes } from "~utils/file"
 import { t, te } from "~utils/i18n"
+import {
+  findPdfMatches,
+  type PdfTextMatch
+} from "~utils/pdf-search"
+import { normalizeSearchQuery } from "~utils/text-highlight"
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
   import.meta.url
 ).toString()
 
+/** 逻辑缩放（CSS 像素）；实际位图会再乘 devicePixelRatio */
 const SCALE = 1.5
 
 type ViewMode = "page" | "scroll"
@@ -17,14 +24,66 @@ interface PdfViewerProps {
   blob: Blob
 }
 
+function getOutputScale() {
+  return Math.min(window.devicePixelRatio || 1, 3)
+}
+
+function HighlightLayer({
+  matches,
+  activeIndex,
+  pageNum,
+  pageWidth,
+  pageHeight
+}: {
+  matches: PdfTextMatch[]
+  activeIndex: number
+  pageNum: number
+  pageWidth: number
+  pageHeight: number
+}) {
+  if (!pageWidth || !pageHeight) return null
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {matches.map((match, index) => {
+        if (match.pageNum !== pageNum) return null
+        return (
+          <div
+            key={`${pageNum}-${index}-${match.left}-${match.top}`}
+            data-pdf-hit={index}
+            className={`dp-pdf-hit${
+              index === activeIndex ? " dp-pdf-hit-active" : ""
+            }`}
+            style={{
+              left: `${(match.left / pageWidth) * 100}%`,
+              top: `${(match.top / pageHeight) * 100}%`,
+              width: `${(match.width / pageWidth) * 100}%`,
+              height: `${(match.height / pageHeight) * 100}%`
+            }}
+          />
+        )
+      })}
+    </div>
+  )
+}
+
 interface PageSlotProps {
   pdf: pdfjsLib.PDFDocumentProxy
   pageNum: number
   active: boolean
+  matches: PdfTextMatch[]
+  activeMatchIndex: number
   onVisible?: (pageNum: number, ratio: number) => void
 }
 
-function PageSlot({ pdf, pageNum, active, onVisible }: PageSlotProps) {
+function PageSlot({
+  pdf,
+  pageNum,
+  active,
+  matches,
+  activeMatchIndex,
+  onVisible
+}: PageSlotProps) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const taskRef = useRef<pdfjsLib.RenderTask | null>(null)
@@ -37,7 +96,10 @@ function PageSlot({ pdf, pageNum, active, onVisible }: PageSlotProps) {
     pdf.getPage(pageNum).then((page) => {
       if (cancelled) return
       const viewport = page.getViewport({ scale: SCALE })
-      setPlaceholder({ width: viewport.width, height: viewport.height })
+      setPlaceholder({
+        width: Math.floor(viewport.width),
+        height: Math.floor(viewport.height)
+      })
     })
 
     return () => {
@@ -70,6 +132,8 @@ function PageSlot({ pdf, pageNum, active, onVisible }: PageSlotProps) {
       if (canvas) {
         canvas.width = 0
         canvas.height = 0
+        canvas.style.width = ""
+        canvas.style.height = ""
       }
       setReady(false)
       return
@@ -84,16 +148,31 @@ function PageSlot({ pdf, pageNum, active, onVisible }: PageSlotProps) {
         const page = await pdf.getPage(pageNum)
         if (cancelled) return
 
+        taskRef.current?.cancel()
+
+        const outputScale = getOutputScale()
         const viewport = page.getViewport({ scale: SCALE })
+        const cssWidth = Math.floor(viewport.width)
+        const cssHeight = Math.floor(viewport.height)
         const context = canvas.getContext("2d")
         if (!context) return
 
-        canvas.width = viewport.width
-        canvas.height = viewport.height
-        setPlaceholder({ width: viewport.width, height: viewport.height })
+        canvas.width = Math.floor(cssWidth * outputScale)
+        canvas.height = Math.floor(cssHeight * outputScale)
+        canvas.style.width = `${cssWidth}px`
+        canvas.style.height = "auto"
+        setPlaceholder({ width: cssWidth, height: cssHeight })
 
-        taskRef.current?.cancel()
-        const task = page.render({ canvasContext: context, viewport })
+        const transform =
+          outputScale !== 1
+            ? [outputScale, 0, 0, outputScale, 0, 0]
+            : undefined
+
+        const task = page.render({
+          canvasContext: context,
+          viewport,
+          transform
+        })
         taskRef.current = task
         await task.promise
         if (!cancelled) setReady(true)
@@ -124,8 +203,8 @@ function PageSlot({ pdf, pageNum, active, onVisible }: PageSlotProps) {
       className="relative mx-auto shadow-sm border rounded overflow-hidden bg-white"
       style={{
         borderColor: "var(--dp-border)",
-        width: "100%",
-        maxWidth: placeholder.width,
+        width: placeholder.width,
+        maxWidth: "100%",
         aspectRatio: `${placeholder.width} / ${placeholder.height}`
       }}>
       {!ready && (
@@ -135,7 +214,14 @@ function PageSlot({ pdf, pageNum, active, onVisible }: PageSlotProps) {
       )}
       <canvas
         ref={canvasRef}
-        className={`block w-full h-auto ${ready ? "opacity-100" : "opacity-0"}`}
+        className={`block max-w-full h-auto ${ready ? "opacity-100" : "opacity-0"}`}
+      />
+      <HighlightLayer
+        matches={matches}
+        activeIndex={activeMatchIndex}
+        pageNum={pageNum}
+        pageWidth={placeholder.width}
+        pageHeight={placeholder.height}
       />
     </div>
   )
@@ -144,10 +230,16 @@ function PageSlot({ pdf, pageNum, active, onVisible }: PageSlotProps) {
 function ContinuousScrollView({
   pdf,
   total,
+  matches,
+  activeMatchIndex,
+  focusPage,
   onCurrentPage
 }: {
   pdf: pdfjsLib.PDFDocumentProxy
   total: number
+  matches: PdfTextMatch[]
+  activeMatchIndex: number
+  focusPage: number | null
   onCurrentPage: (page: number) => void
 }) {
   const visibleRef = useRef<Map<number, number>>(new Map())
@@ -155,17 +247,36 @@ function ContinuousScrollView({
     () => new Set([1])
   )
 
+  useEffect(() => {
+    if (!focusPage) return
+    setActivePages((prev) => {
+      const next = new Set(prev)
+      for (
+        let i = Math.max(1, focusPage - 2);
+        i <= Math.min(total, focusPage + 2);
+        i++
+      ) {
+        next.add(i)
+      }
+      return next
+    })
+    const el = document.querySelector(`[data-page="${focusPage}"]`)
+    el?.scrollIntoView({ behavior: "smooth", block: "center" })
+  }, [focusPage, total])
+
   const handleVisible = useCallback(
     (pageNum: number, ratio: number) => {
       visibleRef.current.set(pageNum, ratio)
 
       setActivePages((prev) => {
         const next = new Set(prev)
-        // Keep nearby pages rendered for smooth scroll (±2)
-        for (let i = Math.max(1, pageNum - 2); i <= Math.min(total, pageNum + 2); i++) {
+        for (
+          let i = Math.max(1, pageNum - 2);
+          i <= Math.min(total, pageNum + 2);
+          i++
+        ) {
           next.add(i)
         }
-        // Drop far pages to free memory
         for (const p of Array.from(next)) {
           if (Math.abs(p - pageNum) > 3) next.delete(p)
         }
@@ -199,6 +310,8 @@ function ContinuousScrollView({
           pdf={pdf}
           pageNum={pageNum}
           active={activePages.has(pageNum)}
+          matches={matches}
+          activeMatchIndex={activeMatchIndex}
           onVisible={handleVisible}
         />
       ))}
@@ -208,14 +321,25 @@ function ContinuousScrollView({
 
 export function PdfViewer({ blob }: PdfViewerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const pageWrapRef = useRef<HTMLDivElement>(null)
   const [error, setError] = useState<string | null>(null)
   const [pageInfo, setPageInfo] = useState({ current: 1, total: 0 })
   const [loading, setLoading] = useState(true)
-  const [mode, setMode] = useState<ViewMode>("page")
+  const [mode, setMode] = useState<ViewMode>("scroll")
+  const modeRef = useRef<ViewMode>("scroll")
+  modeRef.current = mode
   const [pdf, setPdf] = useState<pdfjsLib.PDFDocumentProxy | null>(null)
   const pdfRef = useRef<pdfjsLib.PDFDocumentProxy | null>(null)
   const renderTaskRef = useRef<pdfjsLib.RenderTask | null>(null)
   const generationRef = useRef(0)
+  const searchGenRef = useRef(0)
+
+  const [query, setQuery] = useState("")
+  const [matches, setMatches] = useState<PdfTextMatch[]>([])
+  const [activeMatchIndex, setActiveMatchIndex] = useState(0)
+  const [searching, setSearching] = useState(false)
+  const [focusPage, setFocusPage] = useState<number | null>(null)
+  const [pageSize, setPageSize] = useState({ width: 0, height: 0 })
 
   const renderPage = useCallback(async (pageNum: number, generation: number) => {
     const doc = pdfRef.current
@@ -227,14 +351,27 @@ export function PdfViewer({ blob }: PdfViewerProps) {
     const page = await doc.getPage(pageNum)
     if (generation !== generationRef.current) return
 
+    const outputScale = getOutputScale()
     const viewport = page.getViewport({ scale: SCALE })
+    const cssWidth = Math.floor(viewport.width)
+    const cssHeight = Math.floor(viewport.height)
     const context = canvas.getContext("2d")
     if (!context) return
 
-    canvas.height = viewport.height
-    canvas.width = viewport.width
+    canvas.width = Math.floor(cssWidth * outputScale)
+    canvas.height = Math.floor(cssHeight * outputScale)
+    canvas.style.width = `${cssWidth}px`
+    canvas.style.height = "auto"
+    setPageSize({ width: cssWidth, height: cssHeight })
 
-    const task = page.render({ canvasContext: context, viewport })
+    const transform =
+      outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : undefined
+
+    const task = page.render({
+      canvasContext: context,
+      viewport,
+      transform
+    })
     renderTaskRef.current = task
 
     try {
@@ -262,6 +399,10 @@ export function PdfViewer({ blob }: PdfViewerProps) {
     setError(null)
     setPageInfo({ current: 1, total: 0 })
     setPdf(null)
+    setQuery("")
+    setMatches([])
+    setActiveMatchIndex(0)
+    setFocusPage(null)
 
     const load = async () => {
       try {
@@ -272,8 +413,9 @@ export function PdfViewer({ blob }: PdfViewerProps) {
           throw te("pdf_invalid")
         }
 
-        const loaded = await pdfjsLib.getDocument({ data: new Uint8Array(buffer) })
-          .promise
+        const loaded = await pdfjsLib.getDocument({
+          data: new Uint8Array(buffer)
+        }).promise
 
         if (generation !== generationRef.current) {
           loaded.destroy()
@@ -307,9 +449,72 @@ export function PdfViewer({ blob }: PdfViewerProps) {
     if (!pdf || mode !== "page") return
     setLoading(true)
     void renderPage(pageInfo.current || 1, generationRef.current)
-    // Re-render current page when entering page mode or after PDF loads
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, pdf, renderPage])
+
+  useEffect(() => {
+    const doc = pdfRef.current
+    const q = normalizeSearchQuery(query)
+    if (!doc || !q) {
+      setMatches([])
+      setActiveMatchIndex(0)
+      setSearching(false)
+      setFocusPage(null)
+      return
+    }
+
+    const gen = ++searchGenRef.current
+    setSearching(true)
+    let cancelled = false
+
+    void (async () => {
+      try {
+        const found = await findPdfMatches(doc, q, SCALE)
+        if (cancelled || gen !== searchGenRef.current) return
+        setMatches(found)
+        setActiveMatchIndex(0)
+        if (found.length > 0) {
+          const pageNum = found[0].pageNum
+          setFocusPage(pageNum)
+          if (modeRef.current === "page") {
+            setLoading(true)
+            void renderPage(pageNum, generationRef.current)
+          }
+        } else {
+          setFocusPage(null)
+        }
+      } finally {
+        if (!cancelled && gen === searchGenRef.current) setSearching(false)
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+    // 仅在关键字或文档变化时重搜；mode 用闭包读取即可
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, pdf, renderPage])
+
+  const goToMatch = (delta: number) => {
+    if (matches.length === 0) return
+    const next =
+      (activeMatchIndex + delta + matches.length) % matches.length
+    setActiveMatchIndex(next)
+    const pageNum = matches[next].pageNum
+    setFocusPage(pageNum)
+    if (mode === "page") {
+      if (pageNum !== pageInfo.current) {
+        setLoading(true)
+        void renderPage(pageNum, generationRef.current)
+      }
+    } else {
+      requestAnimationFrame(() => {
+        document
+          .querySelector(`[data-pdf-hit="${next}"]`)
+          ?.scrollIntoView({ behavior: "smooth", block: "center" })
+      })
+    }
+  }
 
   const goToPage = (delta: number) => {
     const next = pageInfo.current + delta
@@ -323,6 +528,9 @@ export function PdfViewer({ blob }: PdfViewerProps) {
     setMode(next)
     if (next === "scroll") {
       setLoading(false)
+      if (matches[activeMatchIndex]) {
+        setFocusPage(matches[activeMatchIndex].pageNum)
+      }
     }
   }
 
@@ -333,74 +541,101 @@ export function PdfViewer({ blob }: PdfViewerProps) {
   const showToolbar = pageInfo.total > 0
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full">
+    <div className="flex flex-col items-center gap-2 w-full">
       {showToolbar && (
-        <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
-          {mode === "page" && pageInfo.total > 1 && (
-            <>
+        <>
+          <div className="w-full self-stretch">
+            <DocumentSearchBar
+              query={query}
+              onQueryChange={setQuery}
+              matchCount={matches.length}
+              activeIndex={activeMatchIndex}
+              onPrev={() => goToMatch(-1)}
+              onNext={() => goToMatch(1)}
+              disabled={!pdf || searching}
+            />
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
+            <div
+              className="flex rounded-md border overflow-hidden"
+              style={{ borderColor: "var(--dp-border)" }}>
+              <button
+                type="button"
+                onClick={() => switchMode("page")}
+                className={`px-3 py-1 transition-colors ${
+                  mode === "page"
+                    ? "bg-blue-600 text-white"
+                    : "bg-slate-100 hover:bg-slate-200"
+                }`}>
+                {t("pdf_mode_page")}
+              </button>
+              <button
+                type="button"
+                onClick={() => switchMode("scroll")}
+                className={`px-3 py-1 transition-colors ${
+                  mode === "scroll"
+                    ? "bg-blue-600 text-white"
+                    : "bg-slate-100 hover:bg-slate-200"
+                }`}>
+                {t("pdf_mode_scroll")}
+              </button>
+            </div>
+
+            <div className="flex items-center gap-3 min-w-[9.5rem] justify-center">
               <button
                 type="button"
                 onClick={() => goToPage(-1)}
-                disabled={pageInfo.current <= 1 || loading}
-                className="px-3 py-1 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed">
+                disabled={
+                  mode !== "page" || pageInfo.current <= 1 || loading
+                }
+                className={`px-3 py-1 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed ${
+                  mode !== "page" ? "invisible" : ""
+                }`}>
                 {t("pdf_prev")}
               </button>
-              <span>
+              <span className="tabular-nums whitespace-nowrap">
                 {pageInfo.current} / {pageInfo.total}
               </span>
               <button
                 type="button"
                 onClick={() => goToPage(1)}
-                disabled={pageInfo.current >= pageInfo.total || loading}
-                className="px-3 py-1 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed">
+                disabled={
+                  mode !== "page" ||
+                  pageInfo.current >= pageInfo.total ||
+                  loading
+                }
+                className={`px-3 py-1 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed ${
+                  mode !== "page" ? "invisible" : ""
+                }`}>
                 {t("pdf_next")}
               </button>
-            </>
-          )}
-
-          {mode === "scroll" && (
-            <span>
-              {pageInfo.current} / {pageInfo.total}
-            </span>
-          )}
-
-          <div className="flex rounded-md border overflow-hidden" style={{ borderColor: "var(--dp-border)" }}>
-            <button
-              type="button"
-              onClick={() => switchMode("page")}
-              className={`px-3 py-1 transition-colors ${
-                mode === "page"
-                  ? "bg-blue-600 text-white"
-                  : "bg-slate-100 hover:bg-slate-200"
-              }`}>
-              {t("pdf_mode_page")}
-            </button>
-            <button
-              type="button"
-              onClick={() => switchMode("scroll")}
-              className={`px-3 py-1 transition-colors ${
-                mode === "scroll"
-                  ? "bg-blue-600 text-white"
-                  : "bg-slate-100 hover:bg-slate-200"
-              }`}>
-              {t("pdf_mode_scroll")}
-            </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       {mode === "page" && (
-        <div className="relative">
+        <div ref={pageWrapRef} className="relative max-w-full">
           {loading && (
-            <div className="absolute inset-0 flex items-center justify-center text-slate-400 text-sm">
+            <div className="absolute inset-0 flex items-center justify-center text-slate-400 text-sm z-10">
               {t("pdf_rendering")}
             </div>
           )}
-          <canvas
-            ref={canvasRef}
-            className="max-w-full shadow-sm border rounded"
-            style={{ borderColor: "var(--dp-border)" }}
-          />
+          <div className="relative inline-block max-w-full">
+            <canvas
+              ref={canvasRef}
+              className="max-w-full h-auto shadow-sm border rounded"
+              style={{ borderColor: "var(--dp-border)" }}
+            />
+            <HighlightLayer
+              matches={matches}
+              activeIndex={activeMatchIndex}
+              pageNum={pageInfo.current}
+              pageWidth={pageSize.width}
+              pageHeight={pageSize.height}
+            />
+          </div>
         </div>
       )}
 
@@ -408,6 +643,9 @@ export function PdfViewer({ blob }: PdfViewerProps) {
         <ContinuousScrollView
           pdf={pdf}
           total={pageInfo.total}
+          matches={matches}
+          activeMatchIndex={activeMatchIndex}
+          focusPage={focusPage}
           onCurrentPage={(page) =>
             setPageInfo((prev) =>
               prev.current === page ? prev : { ...prev, current: page }

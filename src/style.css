@@ -91,3 +91,29 @@ body {
 .dp-viewer-table tbody tr:hover {
   background-color: color-mix(in srgb, var(--dp-preview-bg) 70%, var(--dp-doc-bg));
 }
+
+.dp-search-hit {
+  background-color: #fef08c;
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.dp-search-hit-active {
+  background-color: #fbbf24;
+  outline: 1px solid #d97706;
+}
+
+.dp-pdf-hit {
+  position: absolute;
+  background-color: rgba(254, 240, 140, 0.55);
+  border-radius: 2px;
+  mix-blend-mode: multiply;
+}
+
+.dp-pdf-hit-active {
+  background-color: rgba(251, 191, 36, 0.7);
+  outline: 1px solid #d97706;
+}

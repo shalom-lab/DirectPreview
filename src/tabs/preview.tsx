@@ -27,9 +27,7 @@ import {
 } from "~providers/AppSettingsProvider"
 import "~style.css"
 
-type DeleteConfirm =
-  | { kind: "one"; id: string; name: string }
-  | { kind: "all"; count: number }
+type DeleteConfirm = { id: string; name: string }
 
 function DirectPreviewDashboard() {
   const { t, settings } = useAppSettings()
@@ -278,26 +276,15 @@ function DirectPreviewDashboard() {
 
   const requestDeleteFile = (id: string, name: string, e?: React.MouseEvent) => {
     e?.stopPropagation()
-    setDeleteConfirm({ kind: "one", id, name })
-  }
-
-  const requestClearAll = () => {
-    if (!documentHistory?.length) return
-    setDeleteConfirm({ kind: "all", count: documentHistory.length })
+    setDeleteConfirm({ id, name })
   }
 
   const executeDelete = async () => {
     if (!deleteConfirm) return
 
     try {
-      if (deleteConfirm.kind === "one") {
-        await db.files.delete(deleteConfirm.id)
-        if (activeFile?.id === deleteConfirm.id) {
-          setActiveFile(null)
-          document.title = "DirectPreview"
-        }
-      } else {
-        await db.files.clear()
+      await db.files.delete(deleteConfirm.id)
+      if (activeFile?.id === deleteConfirm.id) {
         setActiveFile(null)
         document.title = "DirectPreview"
       }
@@ -429,23 +416,31 @@ function DirectPreviewDashboard() {
           </div>
           <div className="flex gap-1">
             <button
-              onClick={openSettingsPage}
-              title={t("preview_settings")}
-              className="w-8 h-8 rounded-md text-slate-500 hover:bg-slate-100 hover:text-blue-600 transition-colors text-base leading-none">
-              ⚙
-            </button>
-            <button
+              type="button"
               onClick={() => fileInputRef.current?.click()}
               title={t("preview_importLocal")}
               className="w-8 h-8 rounded-md text-slate-500 hover:bg-slate-100 hover:text-blue-600 transition-colors text-lg leading-none">
               +
             </button>
             <button
-              onClick={requestClearAll}
-              title={t("preview_clearAll")}
-              disabled={!documentHistory?.length}
-              className="w-8 h-8 rounded-md text-slate-500 hover:bg-red-50 hover:text-red-500 transition-colors disabled:opacity-30 text-sm">
-              {t("preview_clearAllBtn")}
+              type="button"
+              onClick={openSettingsPage}
+              title={t("preview_settings")}
+              aria-label={t("preview_settings")}
+              className="w-8 h-8 rounded-md text-slate-500 hover:bg-slate-100 hover:text-blue-600 transition-colors inline-flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-4 h-4"
+                aria-hidden="true">
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
             </button>
           </div>
         </div>
@@ -654,27 +649,77 @@ function DirectPreviewDashboard() {
           {activeFile && (
             <div className="flex gap-2 flex-shrink-0">
               <button
+                type="button"
                 onClick={() => downloadFile(activeFile)}
-                className="px-4 py-1.5 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 transition-colors shadow-sm shadow-blue-100">
-                {t("preview_directDownload")}
+                title={t("preview_directDownload")}
+                aria-label={t("preview_directDownload")}
+                className="w-9 h-9 inline-flex items-center justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors shadow-sm shadow-blue-100">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-4 h-4"
+                  aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" x2="12" y1="15" y2="3" />
+                </svg>
               </button>
               {activeFile.url && (
                 <button
+                  type="button"
                   onClick={downloadViaNative}
-                  className="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-md text-sm font-medium hover:bg-slate-200 transition-colors">
-                  {t("preview_downloadFromUrl")}
+                  title={t("preview_downloadFromUrl")}
+                  aria-label={t("preview_downloadFromUrl")}
+                  className="w-9 h-9 inline-flex items-center justify-center bg-slate-100 text-slate-600 rounded-md hover:bg-slate-200 transition-colors">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-4 h-4"
+                    aria-hidden="true">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                  </svg>
                 </button>
               )}
               <button
+                type="button"
                 onClick={() => requestDeleteFile(activeFile.id, activeFile.name)}
-                className="px-3 py-1.5 text-red-500 hover:bg-red-50 rounded-md text-sm font-medium transition-colors">
-                {t("preview_delete")}
+                title={t("preview_delete")}
+                aria-label={t("preview_delete")}
+                className="w-9 h-9 inline-flex items-center justify-center rounded-md border bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors"
+                style={{ borderColor: "var(--dp-border)" }}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-4 h-4"
+                  aria-hidden="true">
+                  <path d="M3 6h18" />
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                  <line x1="10" x2="10" y1="11" y2="17" />
+                  <line x1="14" x2="14" y1="11" y2="17" />
+                </svg>
               </button>
             </div>
           )}
         </header>
 
-        <section className="flex-1 p-6 overflow-auto dp-dot-grid">
+        <section className="flex-1 px-6 pt-3 pb-6 overflow-auto dp-dot-grid">
           {error && (
             <div className="mb-4 px-4 py-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg">
               {error}
@@ -686,7 +731,7 @@ function DirectPreviewDashboard() {
             </div>
           ) : activeFile ? (
             <div
-              className="p-6 rounded-xl shadow-sm border min-h-full dp-dot-grid-surface"
+              className="px-6 pt-3 pb-6 rounded-xl shadow-sm border min-h-full dp-dot-grid-surface"
               style={{ borderColor: "var(--dp-border)" }}>
               {activeFile.type === "xlsx" && (
                 <ExcelViewer blob={activeFile.blob} />
@@ -724,9 +769,7 @@ function DirectPreviewDashboard() {
               {t("preview_confirmDeleteTitle")}
             </h3>
             <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-              {deleteConfirm.kind === "one"
-                ? t("preview_confirmDeleteOne", deleteConfirm.name)
-                : t("preview_confirmDeleteAll", String(deleteConfirm.count))}
+              {t("preview_confirmDeleteOne", deleteConfirm.name)}
             </p>
             <div className="mt-6 flex justify-end gap-3">
               <button
