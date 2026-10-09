@@ -494,15 +494,15 @@
     "description": "Categories saving"
   },
   "settings_eye_exclude": {
-    "message": "Masquer l’icône œil sur des sites",
+    "message": "Sites sans détection",
     "description": "Eye exclude sites title"
   },
   "settings_eye_exclude_hint": {
-    "message": "Une URL ou un nom d’hôte par ligne. Les pages correspondantes n’afficheront pas l’œil d’aperçu. Préfixe d’URL complet ou hôte seul (ex. example.com).",
+    "message": "Une URL ou un nom d’hôte par ligne. Les pages correspondantes ne détecteront pas les liens de documents et n’afficheront pas l’œil d’aperçu. Préfixe d’URL complet ou hôte seul (ex. example.com).",
     "description": "Eye exclude hint"
   },
   "settings_eye_exclude_placeholder": {
-    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "message": "https://example.com/docs/\nexample.org",
     "description": "Eye exclude placeholder"
   },
   "settings_eye_exclude_saving": {
@@ -584,5 +584,21 @@
   "doc_search_drag": {
     "message": "Glisser pour déplacer",
     "description": "Search bar drag handle"
+  },
+  "settings_tab_general": {
+    "message": "Général",
+    "description": "Settings tab general"
+  },
+  "settings_tab_categories": {
+    "message": "Catégories",
+    "description": "Settings tab categories"
+  },
+  "settings_tab_eye": {
+    "message": "Détection",
+    "description": "Settings tab eye exclude"
+  },
+  "settings_tab_data": {
+    "message": "Données",
+    "description": "Settings tab data"
   }
 }

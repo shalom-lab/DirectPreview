@@ -1,7 +1,7 @@
 {
   "name": "direct-preview",
   "displayName": "__MSG_extName__",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "__MSG_extDescription__",
   "author": "Shaolong Ren",
   "homepage": "https://github.com/shalom-lab/DirectPreview",
@@ -23,6 +23,7 @@
     "dexie": "^4.0.11",
     "dexie-react-hooks": "^1.1.7",
     "docx-preview": "^0.4.1",
+    "jszip": "^3.10.1",
     "pdfjs-dist": "^4.10.38",
     "plasmo": "^0.90.5",
     "react": "18.2.0",

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { useLiveQuery } from "dexie-react-hooks"
+import JSZip from "jszip"
 
 import { WordViewer } from "~components/WordViewer"
 import { DocxViewer } from "~components/DocxViewer"
@@ -20,6 +21,35 @@ import {
 } from "~utils/file"
 import { assertFileSize, sanitizeFilename } from "~utils/security"
 import { te } from "~utils/i18n"
+
+/** More than this many selected files → single zip download. */
+const BATCH_ZIP_THRESHOLD = 3
+
+function uniqueZipEntryName(used: Set<string>, name: string): string {
+  const safe = sanitizeFilename(name)
+  if (!used.has(safe)) {
+    used.add(safe)
+    return safe
+  }
+
+  const dot = safe.lastIndexOf(".")
+  const stem = dot > 0 ? safe.slice(0, dot) : safe
+  const ext = dot > 0 ? safe.slice(dot) : ""
+  let i = 2
+  let candidate = `${stem} (${i})${ext}`
+  while (used.has(candidate)) {
+    i += 1
+    candidate = `${stem} (${i})${ext}`
+  }
+  used.add(candidate)
+  return candidate
+}
+
+function buildBatchZipName(): string {
+  const d = new Date()
+  const pad = (n: number) => String(n).padStart(2, "0")
+  return `DirectPreview-${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}.zip`
+}
 import {
   AppSettingsProvider,
   openSettingsPage,
@@ -295,19 +325,38 @@ function DirectPreviewDashboard() {
     }
   }
 
-  const downloadBlob = async (file: PreviewFile) => {
+  const resolveTypedBlob = async (file: PreviewFile): Promise<Blob> => {
+    if (file.blob.type === file.mime) return file.blob
     const buffer = await file.blob.arrayBuffer()
-    const typedBlob =
-      file.blob.type === file.mime
-        ? file.blob
-        : createTypedBlob(buffer, file.type)
+    return createTypedBlob(buffer, file.type)
+  }
 
-    const blobUrl = URL.createObjectURL(typedBlob)
+  const triggerDownload = (blob: Blob, filename: string) => {
+    const blobUrl = URL.createObjectURL(blob)
     const anchor = document.createElement("a")
     anchor.href = blobUrl
-    anchor.download = sanitizeFilename(file.name)
+    anchor.download = filename
     anchor.click()
     URL.revokeObjectURL(blobUrl)
+  }
+
+  const downloadBlob = async (file: PreviewFile) => {
+    const typedBlob = await resolveTypedBlob(file)
+    triggerDownload(typedBlob, sanitizeFilename(file.name))
+  }
+
+  const downloadFilesAsZip = async (files: PreviewFile[]) => {
+    const zip = new JSZip()
+    const usedNames = new Set<string>()
+
+    for (const file of files) {
+      const typedBlob = await resolveTypedBlob(file)
+      const entryName = uniqueZipEntryName(usedNames, file.name)
+      zip.file(entryName, typedBlob)
+    }
+
+    const zipBlob = await zip.generateAsync({ type: "blob" })
+    triggerDownload(zipBlob, buildBatchZipName())
   }
 
   const downloadFile = async (file: PreviewFile, e?: React.MouseEvent) => {
@@ -328,6 +377,11 @@ function DirectPreviewDashboard() {
 
     try {
       const files = documentHistory.filter((f) => selectedIds.has(f.id))
+      if (files.length > BATCH_ZIP_THRESHOLD) {
+        await downloadFilesAsZip(files)
+        return
+      }
+
       for (let i = 0; i < files.length; i++) {
         await downloadBlob(files[i])
         if (i < files.length - 1) {

@@ -494,15 +494,15 @@
     "description": "Categories saving"
   },
   "settings_eye_exclude": {
-    "message": "Скрыть значок глаза на сайтах",
+    "message": "Сайты без обнаружения",
     "description": "Eye exclude sites title"
   },
   "settings_eye_exclude_hint": {
-    "message": "По одному URL или имени хоста в строке. На совпадающих страницах глаз предпросмотра не показывается. Полный префикс URL или только хост (например, example.com).",
+    "message": "По одному URL или имени хоста в строке. На совпадающих страницах ссылки на документы не обнаруживаются и глаз предпросмотра не показывается. Полный префикс URL или только хост (например, example.com).",
     "description": "Eye exclude hint"
   },
   "settings_eye_exclude_placeholder": {
-    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "message": "https://example.com/docs/\nexample.org",
     "description": "Eye exclude placeholder"
   },
   "settings_eye_exclude_saving": {
@@ -584,5 +584,21 @@
   "doc_search_drag": {
     "message": "Перетащите, чтобы переместить",
     "description": "Search bar drag handle"
+  },
+  "settings_tab_general": {
+    "message": "Общие",
+    "description": "Settings tab general"
+  },
+  "settings_tab_categories": {
+    "message": "Категории",
+    "description": "Settings tab categories"
+  },
+  "settings_tab_eye": {
+    "message": "Обнаружение",
+    "description": "Settings tab eye exclude"
+  },
+  "settings_tab_data": {
+    "message": "Данные",
+    "description": "Settings tab data"
   }
 }

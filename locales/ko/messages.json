@@ -494,15 +494,15 @@
     "description": "Categories saving"
   },
   "settings_eye_exclude": {
-    "message": "눈 아이콘을 숨길 사이트",
+    "message": "감지하지 않을 사이트",
     "description": "Eye exclude sites title"
   },
   "settings_eye_exclude_hint": {
-    "message": "줄마다 URL 또는 호스트명 하나. 일치하는 페이지에는 미리보기 눈 아이콘을 표시하지 않습니다. 전체 URL 접두사 또는 호스트(예: example.com)를 지원합니다.",
+    "message": "줄마다 URL 또는 호스트명 하나. 일치하는 페이지에서는 문서 링크를 감지하지 않으며 미리보기 눈 아이콘도 표시하지 않습니다. 전체 URL 접두사 또는 호스트(예: example.com)를 지원합니다.",
     "description": "Eye exclude hint"
   },
   "settings_eye_exclude_placeholder": {
-    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "message": "https://example.com/docs/\nexample.org",
     "description": "Eye exclude placeholder"
   },
   "settings_eye_exclude_saving": {
@@ -584,5 +584,21 @@
   "doc_search_drag": {
     "message": "드래그하여 이동",
     "description": "Search bar drag handle"
+  },
+  "settings_tab_general": {
+    "message": "일반",
+    "description": "Settings tab general"
+  },
+  "settings_tab_categories": {
+    "message": "분류",
+    "description": "Settings tab categories"
+  },
+  "settings_tab_eye": {
+    "message": "감지",
+    "description": "Settings tab eye exclude"
+  },
+  "settings_tab_data": {
+    "message": "데이터",
+    "description": "Settings tab data"
   }
 }

@@ -506,15 +506,15 @@
     "description": "Categories saving"
   },
   "settings_eye_exclude": {
-    "message": "不显示眼睛图标的网站",
+    "message": "不嗅探的网站",
     "description": "Eye exclude sites title"
   },
   "settings_eye_exclude_hint": {
-    "message": "每行一个网址或域名。匹配的页面不会插入预览小眼睛。支持完整 URL 前缀，或仅域名（如 example.com）。",
+    "message": "每行一个网址或域名。匹配的页面不会嗅探文档链接，也不会插入预览小眼睛。支持完整 URL 前缀，或仅域名（如 example.com）。",
     "description": "Eye exclude hint"
   },
   "settings_eye_exclude_placeholder": {
-    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "message": "https://example.com/docs/\nexample.org",
     "description": "Eye exclude placeholder"
   },
   "settings_eye_exclude_saving": {
@@ -596,5 +596,21 @@
   "doc_search_drag": {
     "message": "拖动移动搜索框",
     "description": "Search bar drag handle"
+  },
+  "settings_tab_general": {
+    "message": "常规",
+    "description": "Settings tab general"
+  },
+  "settings_tab_categories": {
+    "message": "分类",
+    "description": "Settings tab categories"
+  },
+  "settings_tab_eye": {
+    "message": "嗅探",
+    "description": "Settings tab eye exclude"
+  },
+  "settings_tab_data": {
+    "message": "数据",
+    "description": "Settings tab data"
   }
 }

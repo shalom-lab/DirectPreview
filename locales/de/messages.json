@@ -494,15 +494,15 @@
     "description": "Categories saving"
   },
   "settings_eye_exclude": {
-    "message": "Augen-Symbol auf Seiten ausblenden",
+    "message": "Seiten ohne Erkennung",
     "description": "Eye exclude sites title"
   },
   "settings_eye_exclude_hint": {
-    "message": "Eine URL oder ein Hostname pro Zeile. Auf passenden Seiten erscheint kein Vorschau-Auge. Volle URL-Präfixe oder nur Host (z. B. example.com).",
+    "message": "Eine URL oder ein Hostname pro Zeile. Auf passenden Seiten werden Dokumentlinks nicht erkannt und kein Vorschau-Auge angezeigt. Volle URL-Präfixe oder nur Host (z. B. example.com).",
     "description": "Eye exclude hint"
   },
   "settings_eye_exclude_placeholder": {
-    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "message": "https://example.com/docs/\nexample.org",
     "description": "Eye exclude placeholder"
   },
   "settings_eye_exclude_saving": {
@@ -584,5 +584,21 @@
   "doc_search_drag": {
     "message": "Ziehen zum Verschieben",
     "description": "Search bar drag handle"
+  },
+  "settings_tab_general": {
+    "message": "Allgemein",
+    "description": "Settings tab general"
+  },
+  "settings_tab_categories": {
+    "message": "Kategorien",
+    "description": "Settings tab categories"
+  },
+  "settings_tab_eye": {
+    "message": "Erkennung",
+    "description": "Settings tab eye exclude"
+  },
+  "settings_tab_data": {
+    "message": "Daten",
+    "description": "Settings tab data"
   }
 }

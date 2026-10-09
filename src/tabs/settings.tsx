@@ -33,6 +33,15 @@ const THEME_LABEL_KEYS: Record<ThemeId, string> = {
   "eye-blue": "settings_theme_eye_blue"
 }
 
+type SettingsTab = "general" | "categories" | "eye" | "data"
+
+const TAB_DEFS: { id: SettingsTab; labelKey: string }[] = [
+  { id: "general", labelKey: "settings_tab_general" },
+  { id: "categories", labelKey: "settings_tab_categories" },
+  { id: "eye", labelKey: "settings_tab_eye" },
+  { id: "data", labelKey: "settings_tab_data" }
+]
+
 const cardStyle = {
   backgroundColor: "var(--dp-sidebar-bg)",
   borderColor: "var(--dp-border)"
@@ -59,6 +68,7 @@ function SettingsCard({
 
 function SettingsContent() {
   const { settings, ready, updateSettings, t } = useAppSettings()
+  const [activeTab, setActiveTab] = useState<SettingsTab>("general")
   const [categoriesDraft, setCategoriesDraft] = useState("")
   const [categoriesSaving, setCategoriesSaving] = useState(false)
   const [excludeDraft, setExcludeDraft] = useState("")
@@ -121,6 +131,13 @@ function SettingsContent() {
     }
   }
 
+  const switchTab = (tab: SettingsTab) => {
+    if (tab === activeTab) return
+    if (activeTab === "categories") void saveCategories()
+    if (activeTab === "eye") void saveExcludeSites()
+    setActiveTab(tab)
+  }
+
   const executeClearAll = async () => {
     setClearing(true)
     setClearMessage(null)
@@ -172,8 +189,40 @@ function SettingsContent() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto w-full px-5 py-6 space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+      <main className="max-w-xl mx-auto w-full px-5 py-6 space-y-4">
+        <nav
+          className="flex flex-wrap gap-1 p-1 rounded-xl"
+          style={{ backgroundColor: "var(--dp-surface-muted)" }}
+          aria-label={t("settings_title")}>
+          {TAB_DEFS.map((tab) => {
+            const selected = activeTab === tab.id
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => switchTab(tab.id)}
+                className={`flex-1 min-w-[4.5rem] px-3 py-2 text-sm rounded-lg transition-colors ${
+                  selected ? "font-medium shadow-sm" : "hover:opacity-90"
+                }`}
+                style={
+                  selected
+                    ? {
+                        backgroundColor: "var(--dp-doc-bg)",
+                        color: "var(--dp-text)"
+                      }
+                    : {
+                        backgroundColor: "transparent",
+                        color: "var(--dp-text-muted)"
+                      }
+                }
+                aria-current={selected ? "page" : undefined}>
+                {t(tab.labelKey)}
+              </button>
+            )
+          })}
+        </nav>
+
+        {activeTab === "general" && (
           <div className="space-y-4">
             <SettingsCard title={t("settings_language")}>
               <select
@@ -223,67 +272,6 @@ function SettingsContent() {
               </div>
             </SettingsCard>
 
-            <SettingsCard title={t("settings_data")}>
-              <p className="text-xs dp-text-muted mb-3 leading-relaxed">
-                {t("settings_clearAll_hint")}
-              </p>
-              <button
-                type="button"
-                onClick={() => setClearConfirmOpen(true)}
-                disabled={historyCount === 0 || clearing}
-                className="px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
-                {t("settings_clearAll_btn")}
-                {historyCount > 0 ? ` (${historyCount})` : ""}
-              </button>
-              {clearMessage && (
-                <p className="text-xs mt-2 dp-text-muted">{clearMessage}</p>
-              )}
-            </SettingsCard>
-          </div>
-
-          <div className="space-y-4">
-            <SettingsCard title={t("settings_categories")}>
-              <p className="text-xs dp-text-muted mb-3 leading-relaxed">
-                {t("settings_categories_hint")}
-              </p>
-              <textarea
-                value={categoriesDraft}
-                onChange={(e) => setCategoriesDraft(e.target.value)}
-                onBlur={() => {
-                  void saveCategories()
-                }}
-                rows={10}
-                placeholder={t("settings_categories_placeholder")}
-                className="w-full px-3 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-200 dp-viewer-input resize-y min-h-[12rem] font-mono leading-relaxed"
-              />
-              {categoriesSaving && (
-                <p className="text-xs dp-text-muted mt-2">
-                  {t("settings_categories_saving")}
-                </p>
-              )}
-            </SettingsCard>
-
-            <SettingsCard title={t("settings_eye_exclude")}>
-              <p className="text-xs dp-text-muted mb-3 leading-relaxed">
-                {t("settings_eye_exclude_hint")}
-              </p>
-              <textarea
-                value={excludeDraft}
-                onChange={(e) => setExcludeDraft(e.target.value)}
-                onBlur={() => {
-                  void saveExcludeSites()
-                }}
-                rows={6}
-                placeholder={t("settings_eye_exclude_placeholder")}
-                className="w-full px-3 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-200 dp-viewer-input resize-y min-h-[8rem] font-mono leading-relaxed"
-              />
-              {excludeSaving && (
-                <p className="text-xs dp-text-muted mt-2">
-                  {t("settings_eye_exclude_saving")}
-                </p>
-              )}
-            </SettingsCard>
-
             <SettingsCard title={t("settings_github_title")}>
               <div className="flex flex-col gap-4">
                 <div className="min-w-0 space-y-1">
@@ -312,7 +300,72 @@ function SettingsContent() {
               </div>
             </SettingsCard>
           </div>
-        </div>
+        )}
+
+        {activeTab === "categories" && (
+          <SettingsCard title={t("settings_categories")}>
+            <p className="text-xs dp-text-muted mb-3 leading-relaxed">
+              {t("settings_categories_hint")}
+            </p>
+            <textarea
+              value={categoriesDraft}
+              onChange={(e) => setCategoriesDraft(e.target.value)}
+              onBlur={() => {
+                void saveCategories()
+              }}
+              rows={12}
+              placeholder={t("settings_categories_placeholder")}
+              className="w-full px-3 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-200 dp-viewer-input resize-y min-h-[14rem] font-mono leading-relaxed"
+            />
+            {categoriesSaving && (
+              <p className="text-xs dp-text-muted mt-2">
+                {t("settings_categories_saving")}
+              </p>
+            )}
+          </SettingsCard>
+        )}
+
+        {activeTab === "eye" && (
+          <SettingsCard title={t("settings_eye_exclude")}>
+            <p className="text-xs dp-text-muted mb-3 leading-relaxed">
+              {t("settings_eye_exclude_hint")}
+            </p>
+            <textarea
+              value={excludeDraft}
+              onChange={(e) => setExcludeDraft(e.target.value)}
+              onBlur={() => {
+                void saveExcludeSites()
+              }}
+              rows={10}
+              placeholder={t("settings_eye_exclude_placeholder")}
+              className="w-full px-3 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-200 dp-viewer-input resize-y min-h-[12rem] font-mono leading-relaxed"
+            />
+            {excludeSaving && (
+              <p className="text-xs dp-text-muted mt-2">
+                {t("settings_eye_exclude_saving")}
+              </p>
+            )}
+          </SettingsCard>
+        )}
+
+        {activeTab === "data" && (
+          <SettingsCard title={t("settings_data")}>
+            <p className="text-xs dp-text-muted mb-3 leading-relaxed">
+              {t("settings_clearAll_hint")}
+            </p>
+            <button
+              type="button"
+              onClick={() => setClearConfirmOpen(true)}
+              disabled={historyCount === 0 || clearing}
+              className="px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+              {t("settings_clearAll_btn")}
+              {historyCount > 0 ? ` (${historyCount})` : ""}
+            </button>
+            {clearMessage && (
+              <p className="text-xs mt-2 dp-text-muted">{clearMessage}</p>
+            )}
+          </SettingsCard>
+        )}
       </main>
 
       {clearConfirmOpen && (

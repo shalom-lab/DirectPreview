@@ -506,15 +506,15 @@
     "description": "Categories saving"
   },
   "settings_eye_exclude": {
-    "message": "Hide eye icon on sites",
+    "message": "Sites to skip sniffing",
     "description": "Eye exclude sites title"
   },
   "settings_eye_exclude_hint": {
-    "message": "One URL or hostname per line. Matching pages will not show the preview eye. Use a full URL prefix, or just a host (e.g. example.com).",
+    "message": "One URL or hostname per line. Matching pages will not sniff document links or show the preview eye. Use a full URL prefix, or just a host (e.g. example.com).",
     "description": "Eye exclude hint"
   },
   "settings_eye_exclude_placeholder": {
-    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "message": "https://example.com/docs/\nexample.org",
     "description": "Eye exclude placeholder"
   },
   "settings_eye_exclude_saving": {
@@ -596,5 +596,21 @@
   "doc_search_drag": {
     "message": "Drag to move search bar",
     "description": "Search bar drag handle"
+  },
+  "settings_tab_general": {
+    "message": "General",
+    "description": "Settings tab general"
+  },
+  "settings_tab_categories": {
+    "message": "Categories",
+    "description": "Settings tab categories"
+  },
+  "settings_tab_eye": {
+    "message": "Sniffing",
+    "description": "Settings tab eye exclude"
+  },
+  "settings_tab_data": {
+    "message": "Data",
+    "description": "Settings tab data"
   }
 }
