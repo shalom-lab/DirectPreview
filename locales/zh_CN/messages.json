@@ -505,6 +505,22 @@
     "message": "正在保存…",
     "description": "Categories saving"
   },
+  "settings_eye_exclude": {
+    "message": "不显示眼睛图标的网站",
+    "description": "Eye exclude sites title"
+  },
+  "settings_eye_exclude_hint": {
+    "message": "每行一个网址或域名。匹配的页面不会插入预览小眼睛。支持完整 URL 前缀，或仅域名（如 example.com）。",
+    "description": "Eye exclude hint"
+  },
+  "settings_eye_exclude_placeholder": {
+    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "description": "Eye exclude placeholder"
+  },
+  "settings_eye_exclude_saving": {
+    "message": "正在保存…",
+    "description": "Eye exclude saving"
+  },
   "preview_category": {
     "message": "分类",
     "description": "File category label"

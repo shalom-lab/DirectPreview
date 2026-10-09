@@ -493,6 +493,22 @@
     "message": "저장 중…",
     "description": "Categories saving"
   },
+  "settings_eye_exclude": {
+    "message": "눈 아이콘을 숨길 사이트",
+    "description": "Eye exclude sites title"
+  },
+  "settings_eye_exclude_hint": {
+    "message": "줄마다 URL 또는 호스트명 하나. 일치하는 페이지에는 미리보기 눈 아이콘을 표시하지 않습니다. 전체 URL 접두사 또는 호스트(예: example.com)를 지원합니다.",
+    "description": "Eye exclude hint"
+  },
+  "settings_eye_exclude_placeholder": {
+    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "description": "Eye exclude placeholder"
+  },
+  "settings_eye_exclude_saving": {
+    "message": "저장 중…",
+    "description": "Eye exclude saving"
+  },
   "preview_category": {
     "message": "분류",
     "description": "File category label"

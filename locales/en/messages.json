@@ -505,6 +505,22 @@
     "message": "Saving…",
     "description": "Categories saving"
   },
+  "settings_eye_exclude": {
+    "message": "Hide eye icon on sites",
+    "description": "Eye exclude sites title"
+  },
+  "settings_eye_exclude_hint": {
+    "message": "One URL or hostname per line. Matching pages will not show the preview eye. Use a full URL prefix, or just a host (e.g. example.com).",
+    "description": "Eye exclude hint"
+  },
+  "settings_eye_exclude_placeholder": {
+    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "description": "Eye exclude placeholder"
+  },
+  "settings_eye_exclude_saving": {
+    "message": "Saving…",
+    "description": "Eye exclude saving"
+  },
   "preview_category": {
     "message": "Category",
     "description": "File category label"

@@ -493,6 +493,22 @@
     "message": "保存中…",
     "description": "Categories saving"
   },
+  "settings_eye_exclude": {
+    "message": "目アイコンを非表示にするサイト",
+    "description": "Eye exclude sites title"
+  },
+  "settings_eye_exclude_hint": {
+    "message": "1行に1つのURLまたはホスト名。一致するページにはプレビュー目アイコンを表示しません。URLプレフィックス、またはホスト名（例: example.com）に対応。",
+    "description": "Eye exclude hint"
+  },
+  "settings_eye_exclude_placeholder": {
+    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "description": "Eye exclude placeholder"
+  },
+  "settings_eye_exclude_saving": {
+    "message": "保存中…",
+    "description": "Eye exclude saving"
+  },
   "preview_category": {
     "message": "カテゴリ",
     "description": "File category label"

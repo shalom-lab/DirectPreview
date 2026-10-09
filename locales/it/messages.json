@@ -493,6 +493,22 @@
     "message": "Salvataggio…",
     "description": "Categories saving"
   },
+  "settings_eye_exclude": {
+    "message": "Nascondi l’icona occhio sui siti",
+    "description": "Eye exclude sites title"
+  },
+  "settings_eye_exclude_hint": {
+    "message": "Un URL o hostname per riga. Nelle pagine corrispondenti non verrà mostrato l’occhio di anteprima. Prefisso URL completo o solo host (es. example.com).",
+    "description": "Eye exclude hint"
+  },
+  "settings_eye_exclude_placeholder": {
+    "message": "https://shalom-lab.github.io/epi-watch-web/\nexample.com",
+    "description": "Eye exclude placeholder"
+  },
+  "settings_eye_exclude_saving": {
+    "message": "Salvataggio…",
+    "description": "Eye exclude saving"
+  },
   "preview_category": {
     "message": "Categoria",
     "description": "File category label"

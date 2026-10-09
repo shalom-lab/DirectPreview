@@ -1,7 +1,7 @@
 {
   "name": "direct-preview",
   "displayName": "__MSG_extName__",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "__MSG_extDescription__",
   "author": "Shaolong Ren",
   "homepage": "https://github.com/shalom-lab/DirectPreview",

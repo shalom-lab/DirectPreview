@@ -3,6 +3,7 @@ export const SETTINGS_STORAGE_KEY = "directpreview_settings"
 import type { AppLocale } from "~utils/locales"
 import { isAppLocale } from "~utils/locales"
 import { normalizeCategories } from "~utils/categories"
+import { normalizeExcludeSites } from "~utils/exclude-sites"
 
 export type ThemeId = "default" | "eye-green" | "eye-yellow" | "eye-blue"
 export type LocaleId = "auto" | AppLocale
@@ -12,6 +13,8 @@ export interface AppSettings {
   locale: LocaleId
   /** One category name per entry; managed via settings textarea. */
   categories: string[]
+  /** Pages where the eye preview button should not appear; one URL/host per line. */
+  eyeExcludeSites: string[]
 }
 
 export interface ThemeTokens {
@@ -30,7 +33,8 @@ export interface ThemeTokens {
 export const DEFAULT_SETTINGS: AppSettings = {
   theme: "default",
   locale: "auto",
-  categories: []
+  categories: [],
+  eyeExcludeSites: []
 }
 
 export const THEMES: Record<ThemeId, ThemeTokens> = {
@@ -111,7 +115,10 @@ export async function loadSettings(): Promise<AppSettings> {
       locale: isLocaleId(stored.locale) ? stored.locale : DEFAULT_SETTINGS.locale,
       categories: Array.isArray(stored.categories)
         ? normalizeCategories(stored.categories)
-        : DEFAULT_SETTINGS.categories
+        : DEFAULT_SETTINGS.categories,
+      eyeExcludeSites: Array.isArray(stored.eyeExcludeSites)
+        ? normalizeExcludeSites(stored.eyeExcludeSites)
+        : DEFAULT_SETTINGS.eyeExcludeSites
     }
   } catch {
     return { ...DEFAULT_SETTINGS }
@@ -121,7 +128,8 @@ export async function loadSettings(): Promise<AppSettings> {
 export async function saveSettings(settings: AppSettings): Promise<void> {
   const normalized: AppSettings = {
     ...settings,
-    categories: normalizeCategories(settings.categories)
+    categories: normalizeCategories(settings.categories),
+    eyeExcludeSites: normalizeExcludeSites(settings.eyeExcludeSites)
   }
   await chrome.storage.local.set({ [SETTINGS_STORAGE_KEY]: normalized })
 }

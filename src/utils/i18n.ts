@@ -9,8 +9,16 @@ import ptBRMessages from "../../locales/pt_BR/messages.json"
 import ruMessages from "../../locales/ru/messages.json"
 import zhCNMessages from "../../locales/zh_CN/messages.json"
 
-import { detectAppLocale, type AppLocale } from "~utils/locales"
+import {
+  detectAppLocale,
+  isAppLocale,
+  type AppLocale
+} from "~utils/locales"
 import type { LocaleId } from "~utils/settings"
+
+/** Must match SETTINGS_STORAGE_KEY in settings.ts — avoid importing settings
+ *  here so content scripts do not pull a Parcel-split chunk (MODULE_NOT_FOUND). */
+const SETTINGS_STORAGE_KEY = "directpreview_settings"
 
 type MessageEntry = {
   message: string
@@ -87,9 +95,21 @@ export function te(
 }
 
 export async function initLocaleFromStorage(): Promise<void> {
-  const { loadSettings } = await import("~utils/settings")
-  const settings = await loadSettings()
-  setLocaleOverride(settings.locale)
+  try {
+    const result = await chrome.storage.local.get(SETTINGS_STORAGE_KEY)
+    const stored = result[SETTINGS_STORAGE_KEY] as
+      | { locale?: unknown }
+      | undefined
+    const locale = stored?.locale
+    if (
+      locale === "auto" ||
+      (typeof locale === "string" && isAppLocale(locale))
+    ) {
+      setLocaleOverride(locale)
+    }
+  } catch {
+    // keep default "auto"
+  }
 }
 
 function applySubstitutions(

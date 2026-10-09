@@ -12,6 +12,7 @@ import {
   diffCategories,
   normalizeCategories
 } from "~utils/categories"
+import { normalizeExcludeSites } from "~utils/exclude-sites"
 import { GITHUB_REPO_URL, GITHUB_STARS_BADGE_URL } from "~utils/github"
 import { LOCALE_OPTIONS } from "~utils/locales"
 import type { LocaleId } from "~utils/settings"
@@ -60,6 +61,8 @@ function SettingsContent() {
   const { settings, ready, updateSettings, t } = useAppSettings()
   const [categoriesDraft, setCategoriesDraft] = useState("")
   const [categoriesSaving, setCategoriesSaving] = useState(false)
+  const [excludeDraft, setExcludeDraft] = useState("")
+  const [excludeSaving, setExcludeSaving] = useState(false)
   const [clearConfirmOpen, setClearConfirmOpen] = useState(false)
   const [clearing, setClearing] = useState(false)
   const [clearMessage, setClearMessage] = useState<string | null>(null)
@@ -70,6 +73,11 @@ function SettingsContent() {
     if (!ready) return
     setCategoriesDraft(settings.categories.join("\n"))
   }, [ready, settings.categories])
+
+  useEffect(() => {
+    if (!ready) return
+    setExcludeDraft(settings.eyeExcludeSites.join("\n"))
+  }, [ready, settings.eyeExcludeSites])
 
   const saveCategories = async () => {
     const previous = settings.categories
@@ -90,6 +98,26 @@ function SettingsContent() {
       await syncFileCategoriesAfterSettingsChange(renames, deleted)
     } finally {
       setCategoriesSaving(false)
+    }
+  }
+
+  const saveExcludeSites = async () => {
+    const previous = settings.eyeExcludeSites
+    const next = normalizeExcludeSites(excludeDraft)
+    setExcludeDraft(next.join("\n"))
+
+    if (
+      previous.length === next.length &&
+      previous.every((name, i) => name === next[i])
+    ) {
+      return
+    }
+
+    setExcludeSaving(true)
+    try {
+      await updateSettings({ eyeExcludeSites: next })
+    } finally {
+      setExcludeSaving(false)
     }
   }
 
@@ -231,6 +259,27 @@ function SettingsContent() {
               {categoriesSaving && (
                 <p className="text-xs dp-text-muted mt-2">
                   {t("settings_categories_saving")}
+                </p>
+              )}
+            </SettingsCard>
+
+            <SettingsCard title={t("settings_eye_exclude")}>
+              <p className="text-xs dp-text-muted mb-3 leading-relaxed">
+                {t("settings_eye_exclude_hint")}
+              </p>
+              <textarea
+                value={excludeDraft}
+                onChange={(e) => setExcludeDraft(e.target.value)}
+                onBlur={() => {
+                  void saveExcludeSites()
+                }}
+                rows={6}
+                placeholder={t("settings_eye_exclude_placeholder")}
+                className="w-full px-3 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-200 dp-viewer-input resize-y min-h-[8rem] font-mono leading-relaxed"
+              />
+              {excludeSaving && (
+                <p className="text-xs dp-text-muted mt-2">
+                  {t("settings_eye_exclude_saving")}
                 </p>
               )}
             </SettingsCard>
