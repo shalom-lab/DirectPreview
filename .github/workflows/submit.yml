@@ -92,7 +92,7 @@ jobs:
           }
           "
 
-      - name: Upload to Chrome Web Store
+      - name: Upload and submit to Chrome Web Store
         env:
           EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
           CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
@@ -104,11 +104,11 @@ jobs:
             exit 1
           fi
 
-          npx --yes chrome-webstore-upload-cli@3 upload \
+          # CLI v3 requires an explicit upload command with --auto-publish.
+          # Upload first, then submit for review only after upload succeeds.
+          npx --yes chrome-webstore-upload-cli@3 upload --auto-publish \
             --extension-id "$EXTENSION_ID" \
             --client-id "$CLIENT_ID" \
             --client-secret "$CLIENT_SECRET" \
             --refresh-token "$REFRESH_TOKEN" \
             --source "build/DirectPreview-${{ steps.meta.outputs.version }}.zip"
-            # --auto-publish
-          # listing（Privacy / 图标 / 截图 / 描述 / Category）齐全后，去掉上一行注释即可自动发布
